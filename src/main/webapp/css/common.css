@@ -1,0 +1,294 @@
+@charset "shift_jis";
+/*==========================================================
+
+  Common Default Settings
+
+===========================================================*/
+* {
+  margin:0;
+  padding:0;
+  text-align:left;
+  font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "Meiryo UI", "メイリオ", Meiryo, sans-serif;
+}
+html{
+	overflow-y:hidden;	// IE限定スクロールバー非表示（必須１）
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    height:100%;
+    overflow-y:hidden;	// IE限定スクロールバー非表示（必須２）
+}
+/*======================================
+  Text Module
+=======================================*/
+h1, h2, h3, h4, h5, h6, p, form{
+    margin: 0;
+    padding: 0;
+}
+.tit {
+    padding-left:5px;
+    font-weight: bold;
+}
+/*======================================
+  Forms Module
+=======================================*/
+fieldset{
+    margin:0;
+    padding:0px 3px 1px;
+}
+fieldset.outline {
+    float: left;
+}
+select,
+input,
+textarea,
+label{
+    font-size:95%;
+}
+html*input{ height:1.1em;}	/* ie6,7*/
+input,select{margin-right:1px;}
+/* label textbox */
+.errmsg {
+    width: 80%;
+    font-weight: bold;
+    color: #D9333F;
+    margin: 15px 0 10px 30px;
+}
+#select_ym,#select_ym2{width:90px;}
+#select_yy,#select_yy2{width:55px;}
+#select_mm,#select_mm2{width:40px;}
+#select_dd,#select_dd2{width:40px;}
+#label_yosan{ 　height: 1.5em; }	/* ie6,7*/
+
+.errmsg2 {
+    width: 80%;
+    color: #D9333F;
+    margin: 0px 0 0px 20px;
+}
+
+.errcolor {
+    color: #D9333F;
+}
+
+.supmsg {
+    width: 60%;
+    font-weight: bold;
+    color: #007bbb;
+    margin: 15px 0 10px 30px;
+}
+.tr05 {
+    width: 30px;
+    height: 15px;
+    text-align: left;
+    vertical-align: bottom;
+    padding: 0 0 0 5px;
+}
+
+.tl10 {
+    width: 80px;
+    height: 20px;
+    text-align: left;
+    vertical-align: bottom;
+    padding: 0 0 0 10px;
+}
+.tlB10 {
+    font-weight: bold;
+    width: 80px;
+    height: 20px;
+    text-align: left;
+    vertical-align: bottom;
+    margin: 3px 0 0 0;
+}
+.tlB15 {
+    font-weight: bold;
+    width: 130px;
+    height: 20px;
+    text-align: left;
+    vertical-align: bottom;
+    margin: 3px 0 0 0;
+}
+.tlB20 {
+    font-weight: bold;
+    width: 180px;
+    height: 20px;
+    text-align: left;
+    vertical-align: bottom;
+    margin: 3px 0 0 0;
+}
+.tl20 {
+    width: 180px;
+    height: 20px;
+    text-align: left;
+    vertical-align: bottom;
+    margin: 3px 0 0 0;
+}
+.tl30 {
+    width: 180px;
+    height: 30px;
+    text-align: left;
+    vertical-align: bottom;
+    margin: 3px 0 0 0;
+}
+.trB0 {
+    font-weight: bold;
+    height: 15px;
+    text-align: right;
+    vertical-align: bottom;
+    margin: 3px 3px 0 0;
+}
+
+/* btn */
+.btn01 {
+    text-align:center;
+    vertical-align:middle;
+    width:90px;
+    　height: 1.8em;
+}
+.btn02 {
+    text-align:center;
+    vertical-align:middle;
+    width:160px;
+    height: 1.8em;
+}
+.btn03 {
+    text-align:center;
+    vertical-align:middle;
+    width:45px;
+    height: 20px;
+}
+.btn04 {
+    text-align:center;
+    vertical-align:middle;
+    width:90px;
+    height: 20px;
+    padding: 0;
+}
+.btn05 {
+    text-align:center;
+    vertical-align:middle;
+    width:50px;
+    height: 1.8em;
+}
+/*======================================
+  Tables Module
+=======================================*/
+th{ white-space: nowrap; }
+td{ white-space: nowrap; }
+table.tbl01{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    border-collapse: collapse;
+}
+.tbl01 td{
+    padding-bottom: 1px;
+    padding-right:  1px;
+}
+td.tdstyle01 legend{
+	line-height: 1;
+	padding: 0 1px 1px 1px;
+	color: #000000;
+}
+/*==========================================================
+  Report
+===========================================================*/
+/* Work */
+#Work {
+    margin: 5px 0 0 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+}
+#Work H4 {
+    width: 100%;
+    color: #000066;
+    background: #7EBEAB;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 5px;
+    border-color: #009933;
+    border-style: solid none solid none;
+    text-align: left;
+    margin: 5px 0 0 0;
+    padding: 0 0 0 10px;
+}
+#Work p {
+    margin: 100px 0 0 0;
+    text-align: center;
+}
+#Work .opentime {
+    font-weight: bold;
+    color: #007bbb;
+}
+
+/* Report */
+#AREA_FACTOR{
+    font-size: 80%;
+    line-height: 1.1;
+    padding: 0;
+    vertical-align:baseline;
+    width:79em;
+    zoom:1;				// IE限定CSSバグ対応
+}
+#AREA_FACTOR label{
+    display	:block;
+    line-height: 1.3;
+}
+#AREA_FACTOR legend {
+    line-height: 1.1;
+    padding: 0 1px 1px 1px;
+    color:#000000;
+}
+#MAIN_REPORT {
+    padding: 3px 0px 0px 0px;
+    clear:both;
+}
+div#main_form{
+    width: 800px;
+    float: left;
+}
+div#main_form1{
+    width: 700px;
+    float: left;
+}
+div#main_form2{
+    width: 950px;
+    float: left;
+}
+div#main_form3{
+    width: 850px;
+    float: left;
+}
+div#sub_form{
+    width: 300px;
+    float: left;
+}
+div#btn_form{
+    padding		: 7px 0px 0px 4px;
+    float		: left;
+}
+div.line{
+    width: 100%;
+    clear: both;
+}
+div.cell{
+    padding		: 1px 4px 2px 1px;
+    float		: left;
+}
+input.lbl{
+    height: 1.3em;
+    text-align: right;
+    padding:0;
+}
+label.for {
+    float: left;
+    padding-right:4px;
+    vertical-align: middle;
+}
+.sumChk label{
+    padding-top:3px;
+    　padding-bottom:4px;
+}

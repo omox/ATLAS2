@@ -1,0 +1,709 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "Meiryo UI", "メイリオ", Meiryo, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    background: #EFEFEF;
+    min-width: 600px;
+}
+
+/* Header styles */
+#header {
+    clear: both;
+    float: left;
+    width: 100%;
+    position: relative;
+    top: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-color: #595757;
+}
+pre.title{
+    color: #fff;
+}
+p.title{
+    color: #fff;
+}
+
+/* 'widths' sub menu */
+#layoutdims {
+  clear: both;
+  background: #eee;
+  border-top: 4px solid #000;
+  margin: 0;
+  padding: 6px 15px !important;
+  text-align: right;
+}
+
+/* column container */
+.colmask {
+    position: relative;  /* This fixes the IE7 overflow hidden bug */
+    clear: both;
+    float: left;
+    width: 100%;     /* width of whole page */
+    overflow: hidden;    /* This chops off any overhanging divs */
+}
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+.col1,
+.col2,
+.col3 {
+    float: left;
+    position: relative;
+    padding: 1em 0em 1em 0.5em;
+    overflow: hidden;
+}
+
+/* */
+.dbord {
+	padding: 0em;
+}
+
+.tabs {
+	background-color: #DCDDDD;  /* 背景色指定 */
+	border-bottom: 1px solid #4C4948;
+	width: 100%;
+	height:42px;
+	position: fixed;
+	top: 0;
+	left:0;
+	z-index: 1000;
+}
+
+.bordcontents {
+	margin: 42px 1em 0em 1em;
+	padding-top: 0.4em;
+}
+
+.bordcontent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cp_tab *, .cp_tab *:before, .cp_tab *:after {
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.cp_tab {
+	margin: 0em auto;
+}
+.cp_tab > input[type='radio'] {
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	background: none;
+	-webkit-appearance: none;
+	        appearance: none;
+	display: none;
+}
+.cp_tab .cp_tabpanel {
+	display: none;
+}
+.cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
+.cp_tab > input:nth-child(3):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(2),
+.cp_tab > input:nth-child(5):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(3),
+.cp_tab > input:nth-child(7):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(4),
+.cp_tab > input:nth-child(9):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(5),
+.cp_tab > input:nth-child(11):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(6) {
+	display: block;
+}
+.cp_tab > label {
+	position: relative;
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-bottom: 0;
+}
+.cp_tab > label:hover,
+.cp_tab > input:focus + label {
+	color: #0066cc;
+	margin-bottom: -1px;
+	border-color: #4C4948;
+	border-bottom: 3px solid #EFEFEF;/*背景色と同じ*/
+	border-radius: 6px 6px 0 0;
+}
+.cp_tab > input:checked + label {
+	margin-bottom: -1px;
+	border-color: #4C4948;
+	border-bottom: 3px solid #EFEFEF;/*背景色と同じ*/
+	background-color: #EFEFEF;  /* 背景色指定 */
+	border-radius: 6px 6px 0 0;
+}
+.cp_tab .cp_tabpanel {
+	padding: 0.5em 1em;
+	border-top: 1px solid #4C4948;
+}
+@media (max-width: 480px) {
+	.cp_tab {
+		width: 100%;
+		font-size: 0.8em;
+	}
+	.cp_tab label {
+		padding: 0.5em;
+	}
+}
+.selectym {
+	background-color: transparent;  /* 背景色指定 */
+	margin: 0.2em;
+	padding: 0.2em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 国内関連 */
+.top {
+    background-color: #4C4948;  /* 背景色指定 */
+    padding: 0.6em;
+    display: table-cell;
+    vertical-align: middle;
+}
+.topcat {
+    background-color: #FFFFFF;  /* 背景色指定 */
+    padding: 0.4em;
+/* 中央表示
+    display: table-cell;
+    vertical-align: middle;
+*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topcatex {
+    background-color: #FFFFFF;  /* 背景色指定 */
+    padding: 0.5em 1em 0.5em 1em;
+/* 中央表示 */
+    display: table-cell;
+    vertical-align: middle;
+}
+.topcatsa {
+    background-color: #FFFFFF;  /* 背景色指定 */
+    padding: 0.2em 1em 0.5em 1em;
+/* 中央表示 */
+    display: table-cell;
+    vertical-align: middle;
+}
+.topcatpa {
+    background-color: #FFFFFF;  /* 背景色指定 */
+    padding: 0.4em;
+}
+.toptsuhan {
+    background-color: #FEE2C9;  /* 背景色指定 */
+    display: flex;
+    justify-content: center;
+}
+.toptsuhanas {
+    padding: 0.5em 0.5em 1em 0.5em;
+    background-color: #FEE2C9;  /* 背景色指定 */
+    display: flex;
+    justify-content: center;
+}
+.toptenpo {
+    background-color: #C7D4ED;  /* 背景色指定 */
+    display: flex;
+    justify-content: center;
+}
+.toptenpoas {
+    padding: 0.5em 0.5em 1em 0.5em;
+    background-color: #C7D4ED;  /* 背景色指定 */
+    display: flex;
+    justify-content: center;
+}
+.sub {
+    background-color: #898989;  /* 背景色指定 */
+    padding: 0.6em;
+    display: table-cell;
+    vertical-align: middle;
+}
+.cattitle {
+    background-color: #6D6E71;  /* 背景色指定 */
+    padding: 0.4em;
+}
+.cattop {
+    background-color: #6D6E71;  /* 背景色指定 */
+    padding: 0.6em;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.b-radius {
+	border-radius: 5px;	/* ボックスの四つ角を丸くする */
+}
+.tsu-radius-l {
+    border-radius: 5px 0px 0px 5px;	/* ボックスの四つ角を丸くする */
+    background-color: #F9A45E;  /* 背景色指定 */
+}
+.tsu-radius-r {
+    border-radius: 0px 5px 5px 0px;	/* ボックスの四つ角を丸くする */
+    background-color: #FFFFFF;  /* 背景色指定 */
+}
+.ten-radius-l {
+    border-radius: 5px 0px 0px 5px;	/* ボックスの四つ角を丸くする */
+    background-color: #759FD4;  /* 背景色指定 */
+}
+.ten-radius-r {
+    border-radius: 0px 5px 5px 0px;	/* ボックスの四つ角を丸くする */
+    background-color: #FFFFFF;  /* 背景色指定 */
+}
+.plotoutW {
+    background-color: #EDEFEF;  /* 背景色指定 */
+    padding: 0.0em 0.0em 0.0em 0.5em;
+}
+.plotout {
+    background-color: #B5B6B6;  /* 背景色指定 */
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.plotin {
+    background-color: #FFFFFF;  /* 背景色指定 */
+    padding: 0.2em 0.2em 0.2em 0.2em;
+}
+.plot {
+    background-color: #FFFFFF;  /* 背景色指定 */
+}
+.pointout {
+    background-color: #C5C3E2;  /* 背景色指定 */
+    padding: 0.5em;
+}
+.pointhak {
+    padding: 0.5em 0em 0.5em 0.5em;
+    background-color: #DFDEEF;  /* 背景色指定 */
+}
+.pointgak {
+    padding: 0.5em 0em 0.5em 0.5em;
+    background-color: #FFFFFF;  /* 背景色指定 */
+}
+
+.newsout {
+    background-color: #EDF4D7;  /* 背景色指定 */
+    padding: 0em 0em 0.2em 0em;
+    text-align: center;
+}
+.newskyk {
+    background-color: #AACE36;  /* 背景色指定 */
+    padding: 0.5em;
+    margin-right: 11px;
+}
+.newstok {
+    background-color: #FBFCF5;  /* 背景色指定 */
+}
+
+.repout {
+    background-color: #C1A2C4;  /* 背景色指定 */
+    padding: 0.5em;
+}
+.repkyk {
+    background-color: #EBE2EA;  /* 背景色指定 */
+    padding: 1em 1em 0.5em 1em;
+}
+.reptok {
+    background-color: #D6C3D3;  /* 背景色指定 */
+    padding: 1em 1em 1em 1em;
+}
+
+/* フォントサイズ */
+pre {
+    padding-top: 0.2em;
+    padding-left: 0.2em;
+    padding-bottom: 0em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+pre.base {
+    font-size: 1em;
+}
+pre.baseno {
+    font-size: 1em;
+}
+pre.head1 {
+    font-size: 3em;
+}
+pre.head1.fix {
+    width: 3em;
+}
+pre.head1.fixR6 {
+    width: 4em;
+}
+pre.head2a {
+    font-size: 2.5em;
+}
+pre.head2 {
+    font-size: 2em;
+}
+pre.head3 {
+    font-size: 1.7em;
+}
+pre.head4 {
+    font-size: 1em;
+}
+pre.head5 {
+    font-size: 0.8em;
+}
+/* 黒部追加分　ここから*/
+pre.head6 {
+    font-size: 0.7em;
+}
+
+pre.head7 {
+    font-size: 0.6em;
+}
+/* 3ページ目のグラフタイトル用フォント*/
+pre.head8 {
+    font-size: 0.9em;
+}
+/* 黒部追加分　ここまで*/
+
+pre.head5.fix {
+    width: 6em;
+}
+
+pre.head-v-size1 {
+    font-size: 3em;
+}
+
+p.head-v-size5 {
+	font-size: 0.7em;
+	width: 1.4em;
+}
+
+pre.ptop01 {
+padding-top:0.1em;
+}
+
+
+/* table style */
+table {
+    border-collapse:  collapse; /* セルの線を重ねる */
+    align-self: center;
+}
+th,td {
+    /*border: solid 1px;*/          /* 枠線指定 */
+    padding: 0px 0px;          /* 余白指定 */
+    text-align: right;
+}
+.txtbaseline {
+    vertical-align:baseline;
+}
+.txtleft {
+    text-align: left;
+}
+.txtcenter {
+    text-align: center;
+}
+.tableline {
+    background-image: linear-gradient(to top left,
+      transparent, transparent 50%,
+      black 50%, black 51%,
+      transparent 51%, transparent);
+}
+/* フォント グレー */
+.textgrey {
+	color: #666;
+}
+/* 土曜日 */
+.std {
+    background-color: #B2E0F8
+}
+/* 日曜日 */
+.sun {
+    background-color: #F3B0CD
+}
+.circleA {
+  display: flex;
+  justify-content: center;
+  padding: 0px 0px 0px 0px;
+}
+.circleA-1,
+.circleA-2,
+.circleA-3 {
+  color: #000;
+  padding: 5%;
+  width: 330px;
+  height: 125px;
+  margin: 0 5px;
+  mix-blend-mode: multiply;
+}
+.circleA-1 {
+  background: #FDE8D0;
+  border-radius: 10%;
+}
+.circleA-2 {
+  background: #D3DCF0;
+  border-radius: 10%;
+}
+
+/* P3 */
+.circle {
+  display: flex;
+  justify-content: center;
+  padding: 0px 0px 0px 0px;
+}
+.circle-1,
+.circle-2,
+.circle-3 {
+  color: #000;
+  padding: 1% 5% 6% 5%;
+  width: 270px;
+  height: 90px;
+  margin: 0 -20px;
+  mix-blend-mode: multiply;
+  display: flex;
+  justify-content: center;
+}
+.circle-1 {
+  z-index: 1;
+  background: rgba(189,198,175,0.7);
+  border-radius: 70% 70% 70% 70%/70% 70% 70% 70%;
+}
+.circle-2 {
+  background: rgba(232,232,113,1);
+  border-radius: 70% 70% 70% 70%/70% 70% 70% 70%;
+}
+
+/* Footer styles */
+#footer {
+    clear: both;
+    float: left;
+    width: 100%;
+    border-top: 1px solid #000;
+}
+#footer p {
+    padding: 10px;
+    margin: 0;
+}
+
+
+div.nav {
+    position:relative;
+    top: 70px;
+    text-align: right;
+}
+
+a.nav span {
+    font-size: 11px;
+    position: relative;
+    bottom: 2px;
+}
+
+a.nav:visited {
+    text-decoration: none;
+    border: 0px;
+    color: #aaaaaa;
+}
+
+a.nav, a.nav:link {
+    border: 0px;
+    text-decoration: none;
+    font-family: Tahoma, "Helvetica Neue", "Trebuchet MS", Verdana, Arial, sans-serif;
+    font-size: 16px;
+    color: #aaaaaa;
+    margin-right: 11px;
+}
+
+a.nav:hover {
+    text-decoration: none;
+    border: 0px;
+    color: #E0771C;
+}
+
+a.nav:active {
+    text-decoration: none;
+    border: 0px;
+    color: #E0771C;
+}
+
+pre.code-block{
+    background: #D8F4DC;
+    border: 1px solid rgb(200, 200, 200);
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 3em;
+
+}
+
+pre.code {
+    border: 1px solid rgb(200, 200, 200);
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 4em;
+
+}
+
+div.include {
+    margin-bottom: 2em;
+}
+
+p {
+    margin: 2em 0;
+}
+.pbottom {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+div.example-link {
+    margin-bottom: 8px;
+}
+
+a.example-link {
+    color: #ffffff;
+}
+
+div.example-plot {
+    width: 500px;
+    height: 300px;
+}
+
+
+div.syntaxhighlighter {
+    margin-top: 4em !important;
+    margin-bottom: 3em !important;
+}
+
+/* tooltip  */
+.cp_tooltip {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	border: 0px solid #999;
+	font-size: 0.8em;
+}
+
+.cp_tooltip{
+  display: inline-block;
+  width:  16px;
+  height: 16px;
+  border-radius: 50%;
+  background: transparent;
+  border: solid 0px #000000;
+  color: #000000;
+  text-align:center;
+  line-height: 16px;
+  vertical-align: text-top;
+}
+
+img.cp_tooltip{
+	vertical-align: middle;
+}
+.cp_tooltip .cp_tooltiptext {
+	position: absolute;
+	z-index: 1;
+	top: -10px;
+	left: 20px;
+	visibility: hidden;
+	/*width: auto;*/
+	white-space: nowrap;
+	padding: 0.8em 0.8em;		/*余白*/
+	line-height: 150%;			/* 行間 */
+	transition: opacity 1s;
+	text-align: left;
+	opacity: 0;
+	color: #000000;
+	border-radius: 6px;
+	border: 1px solid #DFE0E0; /* 吹き出しの枠（三角接続部の縦線クリア） */
+	background-color: #DFE0E0;
+	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "Meiryo UI", "メイリオ", Meiryo, sans-serif;
+	font-size: 1em;
+}
+.cp_tooltip .cp_tooltiptext::after {
+	position: absolute;
+	top: 40%;
+	right: 100%;
+	margin-left: -10px;
+	content: ' ';
+	border: 7px solid transparent;	/* 三角部の大きさ */
+	border-right-color: #DFE0E0;
+}
+.cp_tooltip:hover .cp_tooltiptext {
+	visibility: visible;
+	opacity: 1.0;
+}
+
+.note {
+    font-size: 0.8em;
+}
+
+/* jqplot Y軸のラベル折り返しなし */
+.jqplot-yaxis-tick {
+  white-space: nowrap;
+}
+
+/* jqplot 凡例の枠線なし */
+table.jqplot-table-legend {
+    border: 0px;
+}
+
+/* jqplot 凡例のスイッチ枠線なし */
+div.jqplot-table-legend-swatch-outline {
+    border: none;
+}
+
+/* jqplot ツールチップのフォント */
+div.highlighter {
+    font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "Meiryo UI", "メイリオ", Meiryo, sans-serif;
+    text-align: left;
+}
+
+/* jqplot 凡例ラベルの位置  */
+.jqplot-table-legend .jqplot-table-legend-label { padding-left:5px; padding-right:10px; }
+
+/* jqplot ツールチップの背景非透過 */
+.jqplot-highlighter-tooltip, .jqplot-canvasOverlay-tooltip {
+    z-index: 2;
+    background: rgba(208,208,208,1)!IMPORTANT;
+}
+
+.jqplot-barRenderer-highlight-canvas .jqplot-lineRenderer-highlight-canvas {
+pointer-events: none;
+}
+
+.jqplot-table-legend-label {
+    white-space: nowrap;
+}
+.jqplot-image-button {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+div.jqplot-image-container {
+    position: relative;
+    z-index: 11;
+    margin: auto;
+    display: none;
+    background-color: #ffffff;
+    border: 1px solid #999;
+    display: inline-block;
+    margin-top: 25px;
+}
+
+div.jqplot-image-container-header {
+    font-size: 1.0em;
+    padding: 5px 15px;
+    background-color: #eee;
+}
+
+div.jqplot-image-container-content {
+    padding: 15px;
+    background-color: #ffffff;
+}
+
+a.jqplot-image-container-close {
+    float: right;
+}

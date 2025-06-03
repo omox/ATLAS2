@@ -1,0 +1,44 @@
+.panel-tool{
+	position:absolute;
+	right:4px;
+	top:10px;
+	height: 20px;
+	_left :875;	/* IE6 ƒŠƒTƒCƒYŽž‘Î‰ž */
+}
+.lbl_shob{
+	float:left;
+	width:55px;
+}
+.sel_shos { width:210px; }
+.sel_shob { width: 80px; }
+.sel_shobs{ width:210px; }
+
+.remarks{
+	float: left;
+	width: 78%;
+	min-height:2.3em;
+	height:auto;
+	margin: 4px;
+	padding: 1px;
+	background-color:#ddebf7;
+	line-height: 1.4;
+}
+.buttons{
+	float:right;
+	width: 21%;
+}
+
+.vertical-align-em tr td{
+	height:1.5em;
+}
+.vertical-align-em input,
+.vertical-align-em select{
+	vertical-align:-0.2em;
+}
+.labelwidth{
+	width: 80px;
+}
+.flat {
+	padding-right:4px;
+	vertical-align: -25%;
+}

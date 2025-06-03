@@ -1,0 +1,77 @@
+@charset "shift_jis";
+@import url("common.css");
+
+/*==========================================================
+
+  Login Views Settings
+
+===========================================================*/
+html,body {
+	height: 100%;
+	font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "Meiryo UI", "メイリオ", Meiryo, sans-serif;
+}
+
+.container{
+	height: 100%;
+}
+
+.head{
+	width: 100%;
+	height: 22%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.content {
+	width:  400px;
+	height: 300px;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: center;	/* インライン要素の中央寄せ */
+	background-color: #F2F2F2;  /* 背景色指定 */
+}
+
+.loginform {
+	width: 60%;
+	height: 100%;
+	display: block;
+	margin:0 auto;	/* ブロック要素の中央寄せ */
+}
+.errmsg {
+	font-size: 0.9em;
+	width: 400px;
+	display: block;
+	margin:0 auto;	/* ブロック要素の中央寄せ */
+}
+
+input[type="text"] {
+	font-size: 0.9em;
+	border-style: none;
+	text-indent: 0.3em;
+	border-radius: 3px;
+}
+/* input text,password */
+.text1a {
+	color: #808080;
+	font-size: 0.9em;
+	border-style: none;
+	text-indent: 0.3em;
+	border-radius: 3px;
+}
+/* input text,password フォーカス */
+.text1a:focus {
+	color: #595959;
+	background-color: #CDCDCD;
+}
+.logo {
+	width: 42%;    /* 横幅を割合で指定 */
+	height: auto;  /* 高さは自動指定 */
+}
+.loginform img {
+	width: 20%;    /* 横幅を割合で指定 */
+	height: auto;  /* 高さは自動指定 */
+}
+input[type="image"] {
+	width: 42%;    /* 横幅を割合で指定 */
+	height: auto;  /* 高さは自動指定 */
+}

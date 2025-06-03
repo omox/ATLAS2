@@ -1,0 +1,288 @@
+@charset "shift_jis";
+
+/*==========================================================
+
+  Common Default Settings
+
+===========================================================*/
+* {
+  margin:0;
+  padding:0;
+  text-align:left;
+  font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue", YuGothic, "ÉqÉâÉMÉmäpÉS ProN W3", Hiragino Kaku Gothic ProN, Arial, "Meiryo UI", "ÉÅÉCÉäÉI", Meiryo, sans-serif;
+}
+
+body {
+ text-align:center;
+}
+
+a,
+a:visited {
+ color: #494949;
+}
+a:hover {
+ text-decoration: none;
+ color: #0066cc;
+}
+
+#container {
+ margin:0;
+ text-align:left;
+}
+
+
+
+/*==========================================================
+
+  Header and UserInfo and GlobalNavigation
+
+===========================================================*/
+#header {
+ width: 95%;
+ margin-top: 3px;
+ margin-left:1px;
+ margin-right:10px;
+ line-height: 1.4;
+}
+
+#header #top_title {
+ float: left;
+}
+#header #top_title h1{
+
+}
+
+#top_navi{
+ display:none;
+}
+
+#header #top_navi a {
+ text-decoration: none;
+ border-bottom:1px dotted #4EBF37;
+}
+#header p {
+ color: #494949;
+}
+
+#header #top_navi a:hover {
+ text-decoration: none;
+ border-bottom:1px solid #4EBF37;
+}
+
+#header #top_navi ul {
+ margin:0;
+ list-style-image:none;
+ list-style-position:outside;
+ list-style-type:none;
+}
+
+#header #top_navi ul li{
+ margin:0;
+ float:left;
+ background-image: url("../img/navi_arrow.gif");
+ background-position: left;
+ background-repeat: no-repeat;
+ padding:0 10px;
+}
+
+#header #infomation{
+ float:right;
+ position:relative;
+}
+#header #infomation #user_info{
+ top:0;
+ left:0;
+ font-size:92%;
+ line-height: 1.5;
+}
+#header #infomation #db_info{
+ top:0;
+ left:0;
+ font-weight:bold;
+ font-size:92%;
+ line-height: 1.0;
+}
+/*==========================================================
+
+  Content
+
+===========================================================*/
+#content {
+ width:100%;
+ clear:both;
+ margin:0;
+ line-height: 1.6;
+}
+
+#content h2{
+ background-color	:#f2f2f2;
+ border-color			:#efefef;
+ border-style			:solid none;
+ border-width			:1px 0pt;
+ color						:#808080;
+ margin:0;
+ padding:0 0 0 10px;
+ text-align:left;
+ vertical-align:middle;
+ font-size: 100%; /* h4ëäìñ */
+ font-weight: 400;
+}
+
+
+/*==========================================================
+
+  Footer
+
+===========================================================*/
+#footer {
+ width:100%;
+ clear:left;
+ margin:0;
+ line-height: 1.6;
+}
+
+/*==========================================================
+
+  Common List Module Default Settings
+
+===========================================================*/
+ul,
+ol,
+dl {
+	padding: 1px 0 1px 10px;
+	list-style-position: outside;
+}
+
+li,
+dt,
+dd {
+	margin: 0.1em 0px;
+}
+
+dt {
+	margin-top: 0.6em;
+}
+
+dd {
+	margin-bottom: 0.6em;
+	color: #666;
+}
+
+li li,
+li p,
+li pre,
+li dt,
+li dd,
+dd li,
+dd p,
+dd pre,
+dd dt,
+dd dd {
+	font-size: 100%;
+}
+
+li ul,
+li ol,
+li dl,
+li p,
+dd ul,
+dd ol,
+dd dl,
+dd p {
+	margin: 0.1em 20px;
+}
+li li{
+	margin: 0 5px;
+}
+
+/*==========================================================
+
+  Common ButtonCick Default Settings
+
+===========================================================*/
+.btnIconBackground {
+    vertical-align: middle;
+    background-color: #f2f2f2;
+    /*background-image: url("ButtonBackground_n.gif");*/
+    background-repeat: repeat-x;
+    background-position: left center;
+    border: 1px solid #f2f2f2;
+    padding: 0 5px;
+    margin: 0;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.btnIconBackground:hover {
+    vertical-align: middle;
+    background-color: #f2f2f2;
+    /*background-image: url("ButtonBackground_h.gif");*/
+    background-repeat: repeat-x;
+    background-position: left center;
+    border: 1px solid #f2f2f2;
+    padding: 0 5px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/*==========================================================
+
+  Common Forms Module Settings
+
+===========================================================*/
+
+.text1 {
+ width: 200px;
+}
+.text1a {
+ width: 150px;
+}
+.text2 {
+ width: 250px;
+}
+
+.label1 {
+ float:left;
+ width: 120px;
+ padding:0 3px 0 3px;
+ margin-top:5px;
+ background-color:#ccc;
+ border:0 solid #ccc;
+ color:#fff;
+ height:20px;
+ margin-bottom:10px;
+}
+
+.btn1 {
+ width: 70px;
+ text-align:center;
+}
+
+/*==========================================================
+
+  Common Error And Info Message Areas Settings
+
+===========================================================*/
+.errmsg {
+ width:95%;
+ color:#FF1C1C;
+ margin:15px 0 10px 30px;
+}
+
+.supmsg {
+ width:95%;
+ font-weight:bold;
+ color:#007bbb;
+ margin:15px 0 10px 30px;
+}
+
+/*==========================================================
+
+  Common Useful Class
+
+===========================================================*/
+.clear{
+ clear:both;
+}
+
+img{border:0px;}

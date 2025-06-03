@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>ダッシュボード</title>
+
+	<link class="include" rel="stylesheet" type="text/css" href="../dash/jquery.jqplot.min.css" />
+	<link class="include" rel="stylesheet" type="text/css" href="../dash/ds.css" />
+</head>
+
+<body>
+<!-- Example scripts go here -->
+<div class="dbord">
+	<div class="tabs">
+		<table style="width:100%;">
+		<tr>
+			<td>
+				<table>
+				<tr>
+					<td><div style="width:30px; height:10px;"></div></td>
+					<td>
+						<div class="selectym b-radius" style="width:210px; height:auto;">
+							<table>
+							<tr>
+								<td>
+									<pre class="base txtcenter">表示年月</pre>
+								</td>
+								<td>
+									<select id="selectyear"></select>
+								</td>
+								<td>
+									<pre class="base txtcenter">年</pre>
+								</td>
+								<td>
+									<select id="selectmonth">
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+								</td>
+								<td>
+									<pre class="base txtcenter">月　</pre>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+					<td><div style="width:10px; height:10px;"></div></td>
+
+					<td>
+					  <div class="cp_tab">
+						<input type="radio" name="cp_tab" id="tab1_1" value="1" checked>
+						<label for="tab1_1" style="top:2px">国内売上</label>
+						<input type="radio" name="cp_tab" id="tab1_2" value="2">
+						<label for="tab1_2" style="top:2px">商品実績</label>
+						<input type="radio" name="cp_tab" id="tab1_3" value="3">
+						<label for="tab1_3" style="top:2px"><font style="opacity:0;">Ｉ</font>KPI<font style="opacity:0;">Ｉ</font></label>
+					  </div>
+					</td>
+				</tr>
+				</table>
+			</td>
+			<td>
+				<a style="font-size:80%;">※2020年9月より店舗ショッパー分を含んだ個数・金額を表示しています&nbsp;&nbsp;</a>
+				<a id="callmenu" href="Dashboard?m=0" target="_blank" class="txtright" style="font-size: 0.9em;">レポートはこちら</a>
+				<a>&nbsp;</a>
+				<a href="./Login.do" style="font-size: 0.9em;">ログアウト</a>
+			</td>
+			<td>
+				<div style="width:30px; height:10px;"></div>
+			</td>
+		</tr>
+		</table>
+	</div>	<!-- class="tabs" -->
+
+	<div id="tab1" class="bordcontents" style="width:auto; height:auto; display:none;">
+	<div class="bordcontent">
+	<table>
+	<tr>
+		<td colspan="5">
+			<div class="top b-radius" style="width:auto; height:auto;">
+				<table>
+				<tr>
+					<td colspan="5">
+						<pre class="base title txtcenter">国内純売上　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">出荷基準で集計、返品額はマイナス済み。</span></div></pre>
+					</td>
+				</tr>
+				<tr><td><div style="width:10px; height:8px;"></div></td></tr>
+				<tr>
+					<td>
+						<div class="topcat b-radius" style="width:720px; height:300px;">
+							<table style="width:680px; height:auto;">
+							<tr>
+								<td style="width:400px; height:auto;">
+									<table>
+									<tr>
+										<td><pre class="head4 txtleft">実績</pre></td>
+										<td>　</td>
+										<td class="txtbaseline"><pre class="head5 txtleft">　　　　</pre></td>
+									</tr>
+									<tr>
+										<td class="txtbaseline"><pre class="head1" id="_101_0_1"></pre></td>
+										<td class="txtbaseline"><pre class="base"> 億円</pre></td>
+										<td class="tableline"></td>
+										<td class="txtbaseline">
+											<table>
+											<tr><td><pre class="txtleft" style="font-size: 1em;">計画</pre></td></tr>
+											<tr>
+												<td class="txtbaseline"><pre class="head3 fix" id="_101_0_2"></pre></td>
+												<td class="txtbaseline"><pre class="head5">億円</pre></td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+									</table>
+								</td>
+								<td>
+									<table>
+									<tr><td><div style="width:10px; height:40px;"></div></td></tr>
+									<tr>
+										<td class="txtbaseline"><pre class="head4 fix">月度計画比　　</pre></td>
+										<td class="txtbaseline"><pre class="head2 fix" id="_101_0_3"></pre></td>
+										<td class="txtbaseline"><pre class="head4 txtleft"> ％</pre></td>
+									</tr>
+									<tr>
+										<td class="txtbaseline"><pre class="head4 fix">前年同日比　　</pre></td>
+										<td class="txtbaseline"><pre class="head3 fix" id="_101_0_4"></pre></td>
+										<td class="txtbaseline"><pre class="head4 txtleft"> ％</pre></td>
+									</tr>
+									</table>
+								</td>
+							</tr>
+
+							<tr><td><div style="width:10px; height:38px;"></div></td></tr>
+
+							<tr>
+								<td colspan="3">
+									<div class="circleA" style="width:auto;">
+										<div class="toptsuhanas b-radius" style="width:337px; height:110px;">
+											<table>
+											<tr><td colspan="4"><pre class="head4 txtcenter">通販<span style="font-size: 0.7em">（他社売上・従販含む）</span></pre></td></tr>
+											<tr>
+												<td>
+													<table>
+													<tr>
+														<td><pre class="head6 txtleft">実績</pre></td>
+														<td>　</td>
+														<td class="txtbaseline"><pre class="head5 txtleft">　　</pre></td>
+														<td class="txtbaseline"><pre class="head5 txtleft">　　</pre></td>
+													</tr>
+													<tr>
+														<td class="txtbaseline"><pre class="head2 fix" id="_101_1_1"></pre></td>
+														<td class="txtbaseline"><pre class="head5"> 億円</pre></td>
+														<td class="tableline"></td>
+														<td class="txtbaseline">
+															<table>
+															<tr>
+															<td><pre class="head6 txtleft">計画</pre></td>
+																<td class="txtbaseline"><pre class="head5 txtleft">　　</pre></td>
+																<td class="txtbaseline"><pre class="head6">月度計画比　</pre></td>
+																<td class="txtbaseline"><pre class="head4" id="_101_1_3"></pre></td>
+																<td class="txtbaseline"><pre class="head5 txtleft">％</pre></td>
+															</tr>
+															<tr>
+																<td class="txtbaseline"><pre class="head4 fix" id="_101_1_2"></pre></td>
+																<td class="txtbaseline"><pre class="head7">億円　</pre></td>
+																<td class="txtbaseline"><pre class="head6">前年同日比　</pre></td>
+																<td class="txtbaseline"><pre class="head4" id="_101_1_4"></pre></td>
+																<td class="txtbaseline"><pre class="head5 txtleft">％</pre></td>
+															</tr>
+															</table>
+														</td>
+													</tr>
+													</table>
+												</td>
+											</tr>
+											</table>
+										</div>	<!-- class="toptsuhanas b-radius" -->
+
+										<div style="width:10px; height:30px;"></div>
+
+										<div class="toptenpoas b-radius" style="width:337px; height:110px;">
+											<table>
+											<tr><td colspan="4"><pre class="head4 txtcenter">店舗<span style="font-size: 0.7em">（従販含む･消化仕入契約分減額済）</span></pre></td></tr>
+											<tr>
+												<td>
+													<table>
+													<tr>
+														<td><pre class="head6 txtleft">実績</pre></td>
+														<td>　</td>
+														<td class="txtbaseline"><pre class="head5 txtleft">　　</pre></td>
+														<td class="txtbaseline"><pre class="head5 txtleft">　　</pre></td>
+													</tr>
+													<tr>
+														<td class="txtbaseline"><pre class="head2 fix" id="_101_2_1"></pre></td>
+														<td class="txtbaseline"><pre class="head5">億円</pre></td>
+														<td class="tableline"></td>
+														<td class="txtbaseline">
+															<table>
+															<tr>
+																<td><pre class="txtleft" style="font-size: 0.7em;">計画</pre></td>
+																<td class="txtbaseline"><pre class="head5 txtleft">　　</pre></td>
+																<td class="txtbaseline"><pre class="head5" style="font-size: 0.7em;">月度計画比　</pre></td>
+																<td class="txtbaseline"><pre class="head4 textright" id="_101_2_3"></pre></td>
+																<td class="txtbaseline"><pre class="head5 txtleft">％</pre></td>
+															</tr>
+															<tr>
+																<td class="txtbaseline"><pre class="head4 fix" id="_101_2_2"></pre></td>
+																<td class="txtbaseline"><pre class="head7">億円　</pre></td>
+																<td class="txtbaseline"><pre class="head6" style="font-size: 0.7em;">前年同日比　</pre></td>
+																<td class="txtbaseline"><pre class="head4 textright" id="_101_2_4"></pre></td>
+																<td class="txtbaseline"><pre class="head5 txtleft">％</pre></td>
+															</tr>
+															</table>
+														</td>
+													</tr>
+													</table>
+												</td>
+											</tr>
+											</table>
+										</div>	<!-- class="toptenpoas b-radius" -->
+									</div>	<!-- class="circleA" -->
+								</td>
+							</tr>
+							</table>
+						</div>	<!-- class="topcat b-radius" -->
+
+					</td>
+
+					<td><div style="width:10px; height:10px;"></div></td>
+
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:300px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">日別　売上</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey"> 億円</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_uri_day" class="plot" style="width:680px; height:228px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>	<!-- class="topcatpa b-radius" -->
+					</td>
+
+					<td><div style="width:10px; height:10px;"></div></td>
+
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:300px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　売上</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey"> 　億円</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_uri_mon" class="plot" style="width:300px; height:228px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				</table>
+
+			</div>	<!-- class="top b-radius" -->
+		</td>
+	</tr>
+
+	<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+
+	<tr>
+		<td>
+			<div class="top b-radius" style="width:auto; height:auto;">
+				<table>
+				<tr><td colspan="4"><pre class="base title txtcenter">国内購入者　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">出荷基準で集計、返品考慮なし。<br>顧客番号がある顧客のみ集計対象とする。</span></div></pre></td></tr>
+				<tr><td><div style="width:10px; height:8px;"></div></td></tr>
+				<tr>
+					<td rowspan="3">
+						<table>
+						<tr>
+							<td>
+								<div class="topcat b-radius" style="width:210px; height:460px">
+									<table style="width:205px; height:auto;">
+									<tr><td><div style="width:10px; height:30px;"></div></td></tr>
+									<tr>
+										<td>
+											<table style="width:180px; height:auto;">
+											<tr>
+												<td colspan="3" class="txtbaseline"><pre class="head4 txtleft">　実績</pre></td>
+											</tr>
+											<tr>
+												<td colspan="3" class="txtbaseline"><pre class="head1 txtcenter"><span id="_104_0_1"></span><span style="font-size: 0.5em"> 万人</span></pre></td>
+											</tr>
+											<tr><td><div style="width:10px; height:30px;"></div></td></tr>
+											<tr>
+												<td class="txtbaseline"><pre class="head4">　前年同日比 </pre></td>
+												<td class="txtbaseline"><pre class="head3 txtright" id="_104_0_2"></pre></td>
+												<td class="txtbaseline"><pre class="head4 txtleft"> ％</pre></td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+
+									<tr><td><div style="width:10px; height:40px;"></div></td></tr>
+
+									<tr>
+										<td>
+											<div class="toptsuhan b-radius">
+												<table>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												<tr><td colspan="3"><pre class="head4 txtcenter">通販<span style="font-size: 0.6em">（他社売上・従販除く）</span></pre></td></tr>
+												<tr><td><div style="width:10px; height:5px;"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head2 fix" id="_104_1_1"></pre></td>
+													<td class="txtbaseline"><pre class="head4 txtleft"> 万人</pre></td>
+													<td class="txtbaseline"><pre class="base"></pre></td>
+												</tr>
+												<tr><td><div style="width:10px;"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head6">前年同日比　</pre></td>
+													<td class="txtbaseline"><pre class="head4 txtright" id="_104_1_2"></pre></td>
+													<td class="txtbaseline"><pre class="head6 txtleft"> ％</pre></td>
+												</tr>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												</table>
+											</div>	<!-- class="toptsuhan b-radius" -->
+										</td>
+									</tr>
+
+									<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+
+									<tr>
+										<td>
+											<div class="toptenpo b-radius">
+												<table>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												<tr><td colspan="3"><pre class="head4 txtcenter">店舗<span style="font-size: 0.6em">（顧客番号なし･従販除く）</span></pre></td></tr>
+												<tr><td><div style="width:10px; height:5px;"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head2 fix" id="_104_2_1"></pre></td>
+													<td class="txtbaseline"><pre class="head4 txtleft"> 万人</pre></td>
+													<td class="txtbaseline"><pre class="base"></pre></td>
+												</tr>
+												<tr><td><div style="width:10px;"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head6">前年同日比　</pre></td>
+													<td class="txtbaseline"><pre class="head4 txtright" id="_104_2_2"></pre></td>
+													<td class="txtbaseline"><pre class="head6 txtleft"> ％</pre></td>
+												</tr>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												</table>
+											</div>	<!-- class="toptenpo b-radius" -->
+										</td>
+									</tr>
+								</table>
+							</div>	<!-- class="topcat b-radius"  -->
+						</td>
+					</tr>
+					</table>
+				</td>
+
+				<td><div style="width:10px; height:5px;"></div></td>
+
+				<td>
+					<div class="top tsu-radius-l" style="width:15px;height:212px;padding-right:1px;padding-left:1px;">
+						<p class="title txtcenter head-v-size5">通販</p>
+					</div>
+				</td>
+				<td>
+					<div class="topcatpa tsu-radius-r" style="width:auto; height:218px;">
+						<table>
+						<tr>
+							<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　購入者</pre></td>
+						</tr>
+						<tr>
+							<td class="txtbaseline"><pre class="head7 txtleft textgrey">万人</pre></td>
+						</tr>
+						<tr>
+							<td>
+								<div id="chart_tsu_kyk_mon" class="plot" style="width:195px; height:147px;"></div>
+							</td>
+						</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+
+				<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+
+				<tr>
+					<td><div style="width:10px; height:5px;"></div></td>
+					<td>
+						<div class="top ten-radius-l " style="width:15px;height:212px;padding-right:1px;padding-left:1px;">
+							<p class="title txtcenter head-v-size5">店舗</p>
+						</div>
+					</td>
+					<td>
+						<div class="topcatpa ten-radius-r" style="width:auto; height:218px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　購入者</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">万人</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_ten_kyk_mon" class="plot" style="width:195px; height:147px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				</table>
+			</div>	<!-- class="top b-radius" -->
+		</td>
+
+		<td><div style="width:5px; height:10px;"></div></td>
+
+		<td>
+			<div class="top b-radius" style="width:auto; height:auto;">
+				<table>
+				<tr><td colspan="5"><pre class="base title txtcenter">国内顧客単価　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">出荷基準で集計、返品考慮なし。<br>顧客番号がある顧客のみ集計対象とする。</span></div></pre></td></tr>
+				<tr><td><div style="width:10px; height:8px;"></div></td></tr>
+				<tr>
+					<td rowspan="3">
+						<table>
+						<tr>
+							<td>
+								<div class="topcat b-radius" style="width:210px; height:460px">
+									<table style="width:205px; height:auto;">
+									<tr><td><div style="width:10px; height:30px;"></div></td></tr>
+									<tr>
+										<td>
+											<table style="width:180px; height:auto;">
+											<tr>
+												<td colspan="3" class="txtbaseline"><pre class="head4 txtleft">　実績</pre></td>
+											</tr>
+											<tr>
+												<td colspan="3" class="txtbaseline"><pre class="head1 txtcenter"><span id="_107_0_1"></span><span style="font-size: 0.5em"> 円</span></pre></td>
+											</tr>
+											<tr><td><div style="width:10px; height:30px;"></div></td></tr>
+											<tr>
+												<td class="txtbaseline"><pre class="head4">　前年同日比 </pre></td>
+												<td class="txtbaseline"><pre class="head3 txtright" id="_107_0_2"></pre></td>
+												<td class="txtbaseline"><pre class="head4 txtleft">％</pre></td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+
+									<tr><td><div style="width:10px; height:40px;"></div></td></tr>
+
+									<tr>
+										<td>
+											<div class="toptsuhan b-radius">
+												<table>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												<tr><td colspan="3"><pre class="head4 txtcenter">通販<span style="font-size: 0.6em">（他社売上・従販除く）</span></pre></td></tr>
+												<tr><td><div style="width:10px; height:5px;"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head2 fix" id="_107_1_1"></pre></td>
+													<td class="txtbaseline"><pre class="head4 txtleft"> 円</pre></td>
+													<td class="txtbaseline"><pre class="base"></pre></td>
+												</tr>
+												<tr><td><div style="width:10px;"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head6">前年同日比　</pre></td>
+													<td class="txtbaseline"><pre class="head4 txtright" id="_107_1_2"></pre></td>
+													<td class="txtbaseline"><pre class="head6 txtleft"> ％</pre></td>
+												</tr>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												</table>
+											</div>	<!-- class="toptsuhan b-radius" -->
+										</td>
+									</tr>
+
+									<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+
+									<tr>
+										<td>
+											<div class="toptenpo b-radius">
+												<table>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												<tr><td colspan="3"><pre class="head4 txtcenter">店舗<span style="font-size: 0.6em">（顧客番号なし･従販除く）</span></pre></td></tr>
+												<tr><td><div style="width:10px; height:5px;"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head2 fix" id="_107_2_1"></pre></td>
+													<td class="txtbaseline"><pre class="head4 txtleft"> 円</pre></td>
+													<td class="txtbaseline"><pre class="base"></pre></td>
+												</tr>
+												<tr><td><div style="width:10px"></div></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head6">前年同日比　</pre></td>
+													<td class="txtbaseline"><pre class="head4 fix txtleft" id="_107_2_2"></pre></td>
+													<td class="txtbaseline"><pre class="head6 txtleft"> ％</pre></td>
+												</tr>
+												<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+												</table>
+											</div>	<!-- class="toptenpo b-radius" -->
+										</td>
+									</tr>
+									</table>
+								</div>	<!-- class="topcat b-radius" -->
+							</td>
+						</tr>
+						</table>
+					</td>
+
+					<td><div style="width:10px; height:10px;"></div></td>
+
+					<td>
+						<div class="top tsu-radius-l" style="width:15px;height:212px;padding-right:1px;padding-left:1px;">
+							<p class="title txtcenter head-v-size5">通販</p>
+						</div>
+					</td>
+					<td>
+						<div class="topcatpa tsu-radius-r" style="width:auto; height:218px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　顧客単価</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　円</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_tsu_tan_mon" class="plot" style="width:215px; height:147px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>	<!-- class="topcatpa tsu-radius-r" -->
+					</td>
+				</tr>
+
+				<tr>
+					<td><div style="width:10px; height:10px;"></div></td>
+				</tr>
+
+				<tr>
+					<td><div style="width:10px; height:5px;"></div></td>
+					<td>
+						<div class="top ten-radius-l " style="width:15px;height:212px;padding-right:1px;padding-left:1px;">
+							<p class="title txtcenter head-v-size5">店舗</p>
+						</div>
+					</td>
+					<td>
+						<div class="topcatpa ten-radius-r" style="width:auto; height:218px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　顧客単価</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　円</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_ten_tan_mon" class="plot" style="width:215px; height:147px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>	<!-- class="topcatpa ten-radius-r" -->
+					</td>
+				</tr>
+				</table>
+			</div>	<!-- class="top b-radius" -->
+		</td>
+
+		<td><div style="width:5px; height:10px;"></div></td>
+
+		<td>
+			<div class="sub b-radius" style="width:auto; height:auto;">
+				<table>
+				<tr><td colspan="5"><pre class="base title txtcenter">国内受注実績　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">受注基準で集計、返品考慮なし。<br>アプリは2019年4月より集計開始、それ以前はスマホとして集計。</span></div></pre></td></tr>
+				<tr><td><div style="width:10px; height:8px;"></div></td></tr>
+				<tr>
+					<td>
+						<div class="top tsu-radius-l" style="width:15px;height:212px;padding-right:1px;padding-left:1px;">
+							<p class="title txtcenter head-v-size5">通販</p>
+						</div>
+					</td>
+					<td>
+						<div class="topcatpa tsu-radius-r" style="width:auto; height:218px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">日別　受注件数</pre></td>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">日別　受注単価</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">万件</pre></td>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　　円</pre></td>
+							</tr>
+							<tr>
+							<td>
+								<div id="chart_tsu_kyk_day" class="plot" style="width:240px; height:147px;"></div>
+							</td>
+							<td>
+								<div id="chart_tsu_tan_day" class="plot" style="width:240px; height:147px;"></div>
+							</td>
+						</tr>
+						</table>
+					</div>	<!-- class="topcatpa tsu-radius-r" -->
+				</td>
+				<td><div style="width:10px; height:5px;"></div></td>
+				<td>
+					<div class="topcatpa b-radius" style="width:auto; height:218px;">
+						<table>
+						<tr>
+							<td class="txtbaseline"><pre class="head6 txtcenter textgrey">チャネル別　受注件数</pre></td>
+						</tr>
+						<tr>
+							<td class="txtbaseline"><pre class="head7 txtleft textgrey">万件</pre></td>
+						</tr>
+						<tr>
+							<td>
+								<div id="chart_chanel_ken" class="plot" style="width:240px; height:147px;"></div>
+							</td>
+						</tr>
+						</table>
+					</div>	<!-- class="topcatpa b-radius" -->
+				</td>
+			</tr>
+
+			<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+
+			<tr>
+				<td>
+					<div class="top ten-radius-l " style="width:15px;height:212px;padding-right:1px;padding-left:1px;">
+						<p class="title txtcenter head-v-size5">店舗</p>
+					</div>
+				</td>
+				<td>
+					<div class="topcatpa ten-radius-r" style="width:auto; height:218px;">
+						<table>
+						<tr>
+							<td class="txtbaseline" style="width:240px;"><pre class="head6 txtcenter textgrey">日別　レジ件数</pre></td>
+							<td class="txtbaseline" style="width:240px;"><pre class="head6 txtcenter textgrey">日別　レジ単価</pre></td>
+						</tr>
+						</table>
+						<table>
+						<tr>
+							<td class="txtbaseline" style="width:240px;"><pre class="head7 txtleft textgrey">万件</pre></td>
+							<td class="txtbaseline" style="width:240px;"><pre class="head7 txtleft textgrey">　　　円</pre></td>
+						</tr>
+						<tr>
+							<td>
+								<div id="chart_ten_kyk_day" class="plot" style="width:240px; height:147px;"></div>
+							</td>
+							<td>
+								<div id="chart_ten_tan_day" class="plot" style="width:240px; height:147px;"></div>
+							</td>
+						</tr>
+						</table>
+					</div>	<!-- class="topcatpa ten-radius-r" -->
+				</td>
+				<td><div style="width:5px; height:5px;"></div></td>
+				<td>
+					<div class="topcatpa b-radius" style="width:auto; height:218px;">
+						<table>
+						<tr>
+							<td class="txtbaseline"><pre class="head6 txtcenter textgrey">チャネル別　受注単価</pre></td>
+						</tr>
+						<tr>
+							<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　　円</pre></td>
+						</tr>
+						<tr>
+							<td>
+								<div id="chart_chanel_tan" class="plot" style="width:240px; height:147px;"></div>
+							</td>
+						</tr>
+						</table>
+					</div>	<!-- class="topcatpa b-radius" -->
+				</td>
+			</tr>
+			</table>
+		</div>	<!-- class="sub b-radius" -->
+		</td>
+	</tr>
+	</table>
+	</div>
+	</div>	<!-- id="tab1" -->
+
+
+	<div id="tab2" class="bordcontents" style="width:auto; height:auto; display:none;">
+	<div class="bordcontent">
+	<table class="bordcontent">
+	<tr>
+		<td style="text-align: center;">
+		</td>
+		<td><div style="width:10px; height:8px;"></div></td>
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="cattitle b-radius" style="width:555px; height:auto;">
+					<pre class="title base txtcenter">購入額　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">出荷基準で集計、返品考慮なし。<br>顧客番号なしを含む通店実績（他社売上・従販除く）を集計対象とする。</span></div></pre>
+				</div>
+			</div>
+		</td>
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="cattitle b-radius" style="width:555px; height:auto;">
+					<pre class="title base txtcenter">購入者　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">出荷基準で集計、返品考慮なし。<br>顧客番号がある顧客のみ集計対象とする。</span></div></pre>
+				</div>
+			</div>
+		</td>
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="cattitle b-radius" style="width:555px; height:auto;">
+					<pre class="title base txtcenter">顧客単価<label class="txtcenter" style="font-size: 0.8em;">（該当商品のみ）</label><div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">出荷基準で集計、返品考慮なし。<br>顧客番号がある顧客のみ集計対象とする。</span></div></pre>
+				</div>
+			</div>
+		</td>
+	</tr>
+
+	<tr><td><div style="width:10px; height:12.07px;"></div></td></tr>
+
+	<tr>
+		<td>
+			<div class="cattop b-radius" style="width:15px; height:255px;">
+				<p class="title txtcenter">分野別</p>
+			</div>
+		</td>
+		<td><div style="width:10px; height:10px;"></div></td>
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">分野別　購入額</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey"> 　　　万円</pre></td>
+					</tr>
+						<tr>
+						<td>
+							<div id="chart_cls_gak" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</td>
+
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">分野別　購入者</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey">万人</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cls_kyk" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</td>
+
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">分野別　顧客単価</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　円</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cls_tan" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		<td>
+	</tr>
+
+	<tr><td><div style="width:10px; height:12.07px;"></div></td></tr>
+
+	<tr>
+		<td>
+			<div class="cattop b-radius" style="width:15px; height:255px;">
+				<p class="title txtcenter pbottom">カテゴリ別</p><div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">スキンケアは、各シリーズ3ステップ商品のみ集計。<br>シリーズ内スペシャル品はスペシャルケアに含む。</span></div>
+			</div>
+		</td>
+		<td><div style="width:10px; height:10px;"></div></td>
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">カテゴリ別　購入額</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey"> 　　　万円</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cat_gak" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</td>
+
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">カテゴリ別　購入者</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey">万人</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cat_kyk" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</td>
+
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">カテゴリ別　顧客単価</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　円</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cat_tan" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		<td>
+	</tr>
+
+	<tr><td><div style="width:10px; height:12.07px;"></div></td></tr>
+
+	<tr>
+		<td>
+			<div class="cattop b-radius" style="width:15px; height:255px;">
+				<p class="title txtcenter pbottom">重点商材別</p><div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="16" height="16" alt="i"><span class="cp_tooltiptext">スキンケア各シリーズは、3ステップ商品のみ集計。<br>シリーズ内スペシャル品は除く。</span></div>
+			</div>
+		</td>
+		<td><div style="width:10px; height:10px;"></div></td>
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">重点商材別　購入額</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey"> 　　万円</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cho_gak" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</td>
+
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">重点商材別　購入者</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey">万人</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cho_kyk" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</td>
+
+		<td>
+			<div class="plotoutW" style="width:570px; height:auto;">
+				<div class="plotin b-radius" style="width:560px; height:267px;">
+					<table>
+					<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head6 txtcenter textgrey">重点商材別　顧客単価</pre></td>
+					</tr>
+					<tr>
+						<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　円</pre></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="chart_cho_tan" class="plot" style="width:560px; height:183px;"></div>
+						</td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		<td>
+	</tr>
+	</table>
+	</div>
+	</div>	<!-- id="tab2" -->
+
+	<div id="tab3" class="bordcontents" style="width:auto; height:auto; display:none;">
+	<div class="bordcontent">
+	<table class="bordcontent">
+	<tr>
+ 		<td>
+			<div class="newskyk b-radius" style="width:1170px; height:auto;">
+				<table>
+				<tr>
+					<td colspan="4">
+						<pre class="base txtcenter">新規獲得　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png" width="48px" height="48px"><span class="cp_tooltiptext">チャネルに関わらず、オルビスで初めて購入した顧客を集計。<br>日別は受注、月別は出荷で集計。</span></div></pre>
+					</td>
+				</tr>
+				<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+				<tr>
+					<td>
+						<div class="topcatsa b-radius" style="width:545px; height:auto;">
+							<pre class="head6 txtcenter" style="height:1.8em" style="padding-top:10px">当月　初回購入者</pre>
+							<div class="newsout b-radius" style="width:545px; height:auto;">
+								<table style="display: inline-block;">
+								<tr>
+									<td>
+										<table>
+										<tr>
+											<td colspan="2"><pre class="head6 txtleft" style="line-height: 20px;">実績</pre></td>
+											<td>　</td>
+											<td class="txtbaseline"><pre class="head5 txtleft">　　　</pre></td>
+											<td class="txtbaseline"></td>
+										</tr>
+										<tr>
+											<td><pre class="head5 txtleft"></pre></td>
+											<td class="txtbaseline"><pre class="head2 fix" style="padding-top:0px" id="_301_0_1"></pre></td>
+											<td class="txtbaseline"><pre class="base">人</pre></td>
+											<td class="tableline"></td>
+											<td class="txtbaseline">
+												<table>
+												<tr><td><pre class="head6 txtleft">計画</pre></td></tr>
+												<tr>
+													<td class="txtbaseline"><pre class="head4 fix" id="_301_0_2"></pre></td>
+													<td class="txtbaseline"><pre class="head5">人　</pre></td>
+												</tr>
+												</table>
+											</td>
+										</tr>
+										</table>
+									</td>
+
+									<td>
+										<table>
+										<tr><td><div style="width:10px; height:24px;"></div></td></tr>
+										<tr>
+											<td class="txtbaseline"><pre class="head5 fix" style="padding-top:0px">月度計画比　</pre></td>
+											<td class="txtbaseline"><pre class="head3 fix" style="padding-top:0px" id="_301_0_3"></pre></td>
+											<td class="txtbaseline"><pre class="head5 txtleft" style="padding-top:0px">％</pre></td>
+										</tr>
+										<tr><td><div style="width:10px; height:4px;"></div></td></tr>
+										<tr>
+											<td class="txtbaseline"><pre class="head5 fix">前年同日比　</pre></td>
+											<td class="txtbaseline"><pre class="head4 fix" id="_301_0_4"></pre></td>
+											<td class="txtbaseline"><pre class="head5 txtleft">％</pre></td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+
+								<tr><td><div style="width:10px; height:13px;"></div></td></tr>
+
+								<tr>
+									<td colspan="2">
+										<div class="circle" style="width:auto;">
+											<div class="circle-1">
+												<div>
+													<table>
+													<tr><td colspan="6"><pre class="head5 txtcenter" id="_301_1_0"></pre></td></tr>
+													<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+													<tr><td colspan="6"><pre class="head5 txtcenter"></pre></td></tr>
+													<tr>
+														<td><pre class="head5 txtleft" style="font-size: 0.6em;">実績　</pre></td>
+														<td class="txtbaseline"><pre><span class="head4" id="_301_1_1"></span><span style="font-size: 0.6em"> 人</span></pre></td>
+														<td class="tableline"><pre class="head5">　　</pre></td>
+														<td class="txtbaseline">
+														<td><pre class="txtleft" style="font-size: 0.6em;">計画　</pre></td>
+														<td class="txtbaseline"><pre><span class="head4" id="_301_1_2"></span><span style="font-size: 0.6em"> 人</span></pre></td>
+													</tr>
+													<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+													</table>
+
+													<table>
+													<tr>
+														<td class="txtbaseline"><pre class="head6">　　　　月度計画比　</pre></td>
+														<td class="txtbaseline"><pre class="head4 txtright" id="_301_1_3"></pre></td>
+														<td class="txtbaseline"><pre class="head6 txtleft"> ％</pre></td>
+													</tr>
+													<tr>
+														<td class="txtbaseline"><pre class="head7">　　　　前年同日比　</pre></td>
+														<td class="txtbaseline"><pre class="head5 txtright" id="_301_1_4"></pre></td>
+														<td class="txtbaseline"><pre class="head7 txtleft"> ％</pre></td>
+													</tr>
+													</table>
+												</div>
+											</div>
+											<div class="circle-2">
+												<div>
+													<table>
+													<tr><td colspan="6"><pre class="head5 txtcenter" id="_301_2_0"></pre></td></tr>
+													<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+													<tr><td colspan="6"><pre class="head5 txtcenter"></pre></td></tr>
+													<tr>
+														<td><pre class="head5 txtleft" style="font-size: 0.6em;">実績　</pre></td>
+														<td class="txtbaseline"><pre><span  class="head4" id="_301_2_1"></span><span style="font-size: 0.6em"> 人</span></pre></td>
+														<td class="tableline"><pre class="head5">　　</pre></td>
+														<td class="txtbaseline"></td>
+														<td><pre class="txtleft" style="font-size: 0.6em;">計画　</pre></td>
+														<td class="txtbaseline"><pre><span class="head4" id="_301_2_2"></span><span style="font-size: 0.6em"> 人</span></pre></td>
+													</tr>
+													<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+													</table>
+
+													<table>
+													<tr>
+														<td class="txtbaseline"><pre class="head6">　　　　月度計画比　</pre></td>
+														<td class="txtbaseline"><pre class="head4 txtright" id="_301_2_3"></pre></td>
+														<td class="txtbaseline"><pre class="head6 txtleft"> ％</pre></td>
+													</tr>
+													<tr>
+														<td class="txtbaseline"><pre class="head7">　　　　前年同日比　</pre></td>
+														<td class="txtbaseline"><pre class="head5 txtright" id="_301_2_4"></pre></td>
+														<td class="txtbaseline"><pre class="head7 txtleft"> ％</pre></td>
+													</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+								<tr><td><div style="width:10px; height:1px;"></div></td></tr>
+								</table>
+							</div>
+						</div>
+					</td>
+
+					<td><div style="width:10px; height:10px;"></div></td>
+
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:245px;">
+							<table>
+							<tr>
+								<td class="txtbaseline" style="width:565px;"><pre class="head6 txtcenter textgrey">日別　初回受注件数</pre></td>
+							</tr>
+							</table>
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　件</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_news_day" class="plot" style="width:565px; height:173px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+
+				<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+
+				<tr>
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:245px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　初回購入者数</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">万人</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_news_mon" class="plot" style="width:565px; height:173px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+					<td><div style="width:10px; height:10px;"></div></td>
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:245px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　初回購入単価</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">　　　円</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_news_tan" class="plot" style="width:565px; height:173px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				</table>
+			</div>
+		</td>
+
+		<td>
+			<div class="repout b-radius" style="width:570px; height:auto;">
+				<table>
+				<tr>
+					<td>
+						<pre class="base txtcenter">リピート活性　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png"><span class="cp_tooltiptext">前月末時点で、チャネル問わず<br>過去6ヶ月に1回以上購入があった顧客を集計。</span></div></pre>
+					</td>
+				</tr>
+				<tr><td><div style="width:5px; height:10px;"></div></td></tr>
+				<tr>
+					<td>
+						<div class="topcatex b-radius" style="width:550px; height:auto;">
+							<table>
+							<tr>
+								<td style="width:116px"><pre class="head5 txtleft">前月末時点<br>R6以内顧客数<br></pre></td>
+								<td class="txtbaseline" style="width:185px"><pre class="head2a txtright" id="_305_0_1"></pre></td>
+								<td class="txtbaseline" style="width:40px"><pre class="base txtcenter">人</pre></td>
+								<td class="txtbaseline" style="width:60px"><pre class="head5 txtleft">　　前年比</pre></td>
+								<td class="txtbaseline" style="width:75px"><pre class="head3 txtright" id="_305_0_2"></pre></td>
+								<td class="txtbaseline" style="width:10px"><pre class="head5 txtright">％</pre></td>
+							</tr>
+							<tr><td><div style="width:10px; height:5px;"></div></td></tr>
+							</table>
+
+							<div class="repkyk b-radius" style="width:auto; height:auto;">
+								<table>
+								<tr>
+									<td class="txtbaseline" style="width:145px"><pre class="head5 txtleft">うち当月購入者<br></pre></td>
+									<td class="txtbaseline" style="width:140px"><pre class="head2" id="_305_1_1"></pre></td>
+									<td class="txtbaseline" style="width:40px"><pre class="base txtcenter">人</pre></td>
+									<td class="txtbaseline" style="width:85px"><pre class="head5 txtleft">　　前年同日比</pre></td>
+									<td class="txtbaseline" style="width:50px"><pre class="head4 txtright" id="_305_1_2"></pre></td>
+									<td class="txtbaseline" style="width:10px"><pre class="head5 txtright">％</pre></td>
+								</tr>
+								<tr><td><div style="width:10px; height:5px;"></div></td></tr>
+								</table>
+
+								<div class="reptok b-radius" style="width:auto; height:auto;">
+									<table>
+									<tr>
+										<td class="txtbaseline" style="width:155px"><pre class="txtleft">当月購入者反応率　<div class="cp_tooltip"><img class="cp_tooltip" src="../dash/3158.png"><span class="cp_tooltiptext" style="font-size:12.8px;">前月末時点R6以内顧客のうち、当月購入した顧客の割合。</span></div></pre></td>
+										<td class="txtbaseline" style="width:115px"><pre class="head3" id="_305_2_1"></pre></td>
+										<td class="txtbaseline" style="width:40px"><pre class="base txtcenter">％</pre></td>
+										<td class="txtbaseline" style="width:85px"><pre class="head5 txtleft">　　前年同日比</pre></td>
+										<td class="txtbaseline" style="width:50px"><pre class="head4 txtright" id="_305_2_2"></pre></td>
+										<td class="txtbaseline" style="width:10px"><pre class="head5 txtright">％</pre></td>
+									</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+
+				<tr><td><div style="width:10px; height:8px;"></div></td></tr>
+
+				<tr>
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:289px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　R6以内反応率</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">万人</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_r6_mon" class="plot" style="width:555px; height:217px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+
+	<tr><td><div style="width:10px; height:10px;"></div></td></tr>
+
+	<tr>
+		<td colspan="3">
+			<div class="pointout b-radius" style="height:auto;">
+				<table>
+				<tr>
+					<td colspan="5">
+						<pre class="base txtcenter">ポイント発行・使用状況</pre>
+					</td>
+				</tr>
+
+				<tr><td colspan="5"><div style="width:10px; height:10px;"></div></td></tr>
+
+				<tr>
+					<td>
+						<div class="pointgak b-radius" style="width:510px; height:110.1px;">
+							<table>
+							<tr><td colspan="4"><pre class="base txtleft">当月発行ポイント</pre></td></tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head1 fix ptop01" id="_307_0_1"></pre></td>
+								<td class="txtbaseline"><pre class="base">億PT</pre></td>
+								<td><div style="width:20px; height:10px;"></div></td>
+								<td class="txtbaseline"><pre class="head4" style="width:140px">前年同日比　</pre></td>
+								<td class="txtbaseline"><pre class="head3" style="width:70px" id="_307_0_2"></pre></td>
+								<td class="txtbaseline"><pre class="head5 txtleft"> ％</pre></td>
+							</tr>
+							<tr>
+								<td colspan="3"></td>
+								<td class="txtbaseline"><pre class="head6 txtrigth ptop01" style="width:140px">発行率(対純売上)　</pre></td>
+								<td class="txtbaseline"><pre class="head4 txtrigth ptop01" style="width:70px" id="_307_0_3"></pre></td>
+								<td class="txtbaseline"><pre class="head6 txtrigth ptop01"> ％</pre></td>
+							</tr>
+							</table>
+						</div>
+						<div style="width:10px; height:10px;"></div>
+						<div class="pointhak b-radius" style="width:510px; height:110.1px;">
+							<table>
+							<tr><td colspan="4"><pre class="base txtleft">当月使用ポイント</pre></td></tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head1 fix ptop01" id="_307_1_1"></pre></td>
+								<td class="txtbaseline"><pre class="base">億PT</pre></td>
+								<td><div style="width:20px; height:10px;"></div></td>
+								<td class="txtbaseline"><pre class="head4" style="width:140px">前年同日比　</pre></td>
+								<td class="txtbaseline"><pre class="head3" style="width:70px" id="_307_1_2"></pre></td>
+								<td class="txtbaseline"><pre class="head5 txtleft"> ％</pre></td>
+							</tr>
+							<tr>
+								<td colspan="3"></td>
+								<td class="txtbaseline"><pre class="head6 txtrigth ptop01" style="width:140px">使用率(対純売上)　</pre></td>
+								<td class="txtbaseline"><pre class="head4 txtrigth ptop01" style="width:70px" id="_307_1_3"></pre></td>
+								<td class="txtbaseline"><pre class="head6 txtrigth ptop01"> ％</pre></td>
+							</tr>
+							</table>
+						</div>
+					</td>
+
+					<td><div style="width:10px; height:10px;"></div></td>
+
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:249.5px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　発行ポイント</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">億PT</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_point_hak" class="plot" style="width:600px; height:163px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+
+					<td>
+						<div style="width:10px; height:10px;"></div>
+					</td>
+					<td>
+						<div class="topcatpa b-radius" style="width:auto; height:249.5px;">
+							<table>
+							<tr>
+								<td class="txtbaseline"><pre class="head6 txtcenter textgrey">月別　使用ポイント</pre></td>
+							</tr>
+							<tr>
+								<td class="txtbaseline"><pre class="head7 txtleft textgrey">億PT</pre></td>
+							</tr>
+							<tr>
+								<td>
+									<div id="chart_point_gak" class="plot" style="width:600px; height:163px;"></div>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+
+	</table>
+	</div>	<!-- id="tab3" -->
+	</div>
+	</div>	<!-- class="dbord" -->
+
+
+<script class="include" type="text/javascript" src="../dash/jquery.js"></script>
+
+<!-- Don't touch this! -->
+<script class="include" type="text/javascript" src="../dash/jquery.jqplot.min.js"></script>
+<!-- End Don't touch this! -->
+
+<!-- Additional plugins go here -->
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.barRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.pointLabels.min.js"></script>
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.enhancedLegendRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" type="text/javascript" src="../dash/plugins/jqplot.highlighter.min.js"></script>
+<!-- End additional plugins -->
+
+<script class="include" type="text/javascript" src="../dash/ds.js?v=20190807"></script>
+
+</body>
+</html>
