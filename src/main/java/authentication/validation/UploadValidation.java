@@ -51,7 +51,7 @@ public class UploadValidation {
   public String OutMsg() {
     StringBuilder msg = new StringBuilder();
     int size = msgs.size();
-    msg.append("行" + errrow + "に以下の " + size + "つ のエラーがあります。 内容を確認して下さい。<br />");
+    msg.append("<br>行番号：" + errrow + " に以下の " + size + "つ のエラーがあります。 内容を確認して下さい。<br />");
     for (int i = 0; i < size; i++) {
       msg.append("&nbsp;&nbsp;・" + msgs.get(i) + "<br />");
     }
@@ -488,36 +488,36 @@ public class UploadValidation {
       // プロモ商品計画数（通店プロモ商品速報）
       if (strdata.length == 12) {
         /* 年月 */
-        if (!this.chkRequiredLHANDate(strdata[0], 6, "年月", Defines.DT_UP_FORMAT_YM)) {
+        if (!this.chkRequiredLHANDate(strdata[0].replaceFirst("^'", ""), 6, "年月", Defines.DT_UP_FORMAT_YM)) {
           errflg = false;
         }
         /* 販売チャネル */
-        if (!this.chkRequiredLHAN(strdata[1], 1, "販売チャネル")) {
+        if (!this.chkRequiredLHAN(strdata[1].replaceFirst("^'", ""), 1, "販売チャネル")) {
           errflg = false;
         }
         /* 基本分類コード */
-        if (!this.chkRequiredLHAN(strdata[2], 2, "基本分類コード")) {
+        if (!this.chkRequiredLHAN(strdata[2].replaceFirst("^'", ""), 2, "基本分類コード")) {
           errflg = false;
         }
         /* 集計カテゴリ */
-        if (!this.chkRequiredLHAN(strdata[3], 2, "集計カテゴリ")) {
+        if (!this.chkRequiredLHAN(strdata[3].replaceFirst("^'", ""), 2, "集計カテゴリ")) {
           errflg = false;
         }
         /* CPフラグ */
-        if (!this.chkRequiredLHAN(strdata[4], 1, "CPフラグ")) {
+        if (!this.chkRequiredLHAN(strdata[4].replaceFirst("^'", ""), 1, "CPフラグ")) {
           errflg = false;
         }
         /* CPフラグ */
-        if (!this.chkRequiredOHAN(strdata[5], 8, "商品番号（CPコード）")) {
+        if (!this.chkRequiredOHAN(strdata[5].replaceFirst("^'", ""), 8, "商品番号（CPコード）")) {
           errflg = false;
         }
         /* 年月 */
-        if (errflg) {
-          errflg = this.chkNonreqLDate(strdata[7], 8, "プロモーション開始日");
+        if (!this.chkNonreqLDate(strdata[7], 8, "プロモーション開始日")) {
+          errflg = false;
         }
         /* 年月 */
-        if (errflg) {
-          errflg = this.chkNonreqLDate(strdata[8], 8, "プロモーション終了日");
+        if (!this.chkNonreqLDate(strdata[8], 8, "プロモーション終了日")) {
+          errflg = false;
         }
       } else {
         msgs.add(MSG_COL);

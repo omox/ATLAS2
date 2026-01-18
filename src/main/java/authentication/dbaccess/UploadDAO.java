@@ -205,9 +205,6 @@ public class UploadDAO {
         insertWorkSQL = SQL.INSERT_WORK_004;
         deleteRecordSQL = SQL.DELETE_RECORD_004;
         insertRecordSQL = SQL.INSERT_RECORD_004;
-        System.out.println(deleteRecordSQL);
-        System.out.println(insertRecordSQL);
-        return;
         // cutMoji = "\t"; // タブ区切り文字
 
       } else if (filetype.equals("5") // 商品実績_カタログ
