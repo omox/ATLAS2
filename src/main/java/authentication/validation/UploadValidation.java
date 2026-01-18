@@ -108,22 +108,6 @@ public class UploadValidation {
   }
 
   /**
-   * 数値かを判定し、結果を戻す。(小数可) <br />
-   *
-   * @param str 対象文字列
-   * @return 数値のみ:true
-   */
-  private boolean isNumericD(String str) {
-    try {
-      // Double型に変換可能かチェック
-      Double.parseDouble(str);
-      return true;
-    } catch (Exception e) {
-      return false;
-    }
-  }
-
-  /**
    * 日付か判定し、結果を戻す。 <br />
    * 記号は対象外(ｴﾗｰ)とする
    *
@@ -230,11 +214,11 @@ public class UploadValidation {
       msgs.add(msg);
       errflg = false;
     } else if (obj.trim().length() > len) {
-      String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END + MSG_KIGO + "A";
+      String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END + MSG_KIGO;
       msgs.add(msg);
       errflg = false;
     } else if (!this.isNumeric(obj)) {
-      String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END + MSG_KIGO + "B";
+      String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END + MSG_KIGO;
       msgs.add(msg);
       errflg = false;
     }
@@ -504,7 +488,33 @@ public class UploadValidation {
       // プロモ商品計画数（通店プロモ商品速報）
       if (strdata.length == 12) {
         /* 年月 */
-        errflg = this.chkNonreqLDate(strdata[7], 8, "プロモーション開始日");
+        if (!this.chkRequiredLHANDate(strdata[0], 6, "年月", Defines.DT_UP_FORMAT_YM)) {
+          errflg = false;
+        }
+        /* 販売チャネル */
+        if (!this.chkRequiredLHAN(strdata[1], 1, "販売チャネル")) {
+          errflg = false;
+        }
+        /* 基本分類コード */
+        if (!this.chkRequiredLHAN(strdata[2], 2, "基本分類コード")) {
+          errflg = false;
+        }
+        /* 集計カテゴリ */
+        if (!this.chkRequiredLHAN(strdata[3], 2, "集計カテゴリ")) {
+          errflg = false;
+        }
+        /* CPフラグ */
+        if (!this.chkRequiredLHAN(strdata[4], 1, "CPフラグ")) {
+          errflg = false;
+        }
+        /* CPフラグ */
+        if (!this.chkRequiredOHAN(strdata[5], 8, "商品番号（CPコード）")) {
+          errflg = false;
+        }
+        /* 年月 */
+        if (errflg) {
+          errflg = this.chkNonreqLDate(strdata[7], 8, "プロモーション開始日");
+        }
         /* 年月 */
         if (errflg) {
           errflg = this.chkNonreqLDate(strdata[8], 8, "プロモーション終了日");

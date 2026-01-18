@@ -260,7 +260,7 @@ public class UploadServlet extends HttpServlet {
           if (!vld.UpDown_Download(strdata, radval.trim(), row)) {
             /* エラーメッセージの設定 */
             request.setAttribute(Defines.STR_FRM_MSGTYPE, Defines.STR_VAL_MSGTYPE_ERR);
-            request.setAttribute(Defines.STR_FRM_MSG, vld.OutMsg());
+            request.setAttribute(Defines.STR_FRM_MSG, vld.OutMsg() + "（行番号：" + Long.toString(row) + "）"); // 行番号追加
             inpflg = false;
             break;
           }
