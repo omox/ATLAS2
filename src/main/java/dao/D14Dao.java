@@ -214,7 +214,7 @@ public class D14Dao extends ItemDao {
 			sb.append("SELECT YMFG,CASE WHEN CLSNO = 0 THEN 0 ELSE 1 END AS CLSNO, SUM(SU) AS SU,SUM(KG) AS KG,COUNT(DISTINCT KN) AS KN FROM (");
 			sb.append("SELECT ");
 			sb.append("    SUBSTR(U.YM,1,4) AS YMFG ");
-			sb.append("  , MIN(NVL(K.ZMREP,0)) AS CLSNO ");
+			sb.append("  , MIN(CASE WHEN K.DTSHU = U.YMD AND U.NFLG=1 THEN 0 ELSE 1 END) AS CLSNO ");
 			sb.append("  , SUM(U.SU) AS SU ");
 			sb.append("  , SUM(U.KG) AS KG ");
 			sb.append("  , U.KNOT AS KN ");
@@ -282,15 +282,31 @@ public class D14Dao extends ItemDao {
 			// 基本分野
 			sb.append(sbCLASS.toString());
 
+			sb.append(",W_CAL(YMD) AS ( ");
+			sb.append("SELECT DISTINCT SUBSTR(YMD_CD,1,6) FROM M_CALENDAR WHERE YMD_CD BETWEEN '"+szYy+"0101' AND '"+szYy+"1231' ");
+			sb.append(") ");
+			sb.append(",W_BASE(YMD,CD) AS ( ");
+			sb.append("SELECT YMD,CD FROM W_CAL,DS_M_KINGAKU ");
+			sb.append(") ");
+
 			// 基本集計
 			sb.append(", T_URI AS ( ");
 			sb.append("SELECT ");
-			sb.append("    SUBSTR(U.YM,5,2) AS YMFG ");
-			sb.append("  , NVL(CASE WHEN K.ZMREP IS NULL THEN 0 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 END,9) AS CLSNO ");
+			sb.append(" SUBSTR(T0.YMD,5,2) AS YMFG, ");
+			sb.append(" CASE WHEN GROUPING_ID(T0.CD)=1 THEN 9 ELSE T0.CD END AS CLSNO ");
+			sb.append(",SUM(T1.SU) AS SU ");
+			sb.append(",SUM(T1.KG) AS KG ");
+			sb.append(",SUM(T1.KN) AS KN ");
+			sb.append("FROM W_BASE T0 ");
+			sb.append("LEFT OUTER JOIN ( ");
+			sb.append("SELECT ");
+			sb.append("    U.YM AS YMFG ");
+			sb.append("  , CLSNO AS CLSNO ");
 			sb.append("  , SUM(U.SU) AS SU ");
 			sb.append("  , SUM(U.KG) AS KG ");
 			sb.append("  , COUNT(DISTINCT U.KNOT) AS KN ");
-			sb.append("FROM ");
+			sb.append(" FROM (SELECT U.YM AS YM, MIN(CASE WHEN K.DTSHU = U.YMD AND U.NFLG = 1 THEN 0 WHEN K.DTSHU = U.YMD AND U.NFLG <> 1 THEN 1 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 ELSE 1 END) AS CLSNO, MIN(ZYKG) AS ZYKG, SUM(SU) AS SU,SUM(KG) AS KG, U.KNOT");
+			sb.append(" FROM ");
 			sb.append("  DS_S_URI_D U ");
 			sb.append("  INNER JOIN W_CLASS W ON ( ");
 			sb.append("      U.YM BETWEEN '"+szYy+"01' AND '"+szYy+"12' ");
@@ -305,8 +321,11 @@ public class D14Dao extends ItemDao {
 			sb.append("  AND U.ICD  LIKE CASE WHEN W.ICD ='00' THEN '%' ELSE W.ICD  END ");
 			sb.append("  ) ");
 			sb.append("  INNER JOIN DS_S_KNO_M K ON (U.YM=K.YM AND U.KNOT=K.KNOT) ");
+			sb.append("  GROUP BY U.YM,U.KNOT)U ");
 			sb.append("GROUP BY ");
-			sb.append("GROUPING SETS((U.YM,CASE WHEN K.ZMREP IS NULL THEN 0 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 END),(U.YM)) ");
+			sb.append("U.YM,U.CLSNO ");
+			sb.append(") T1 ON T1.YMFG=T0.YMD AND T1.CLSNO=T0.CD ");
+			sb.append("GROUP BY GROUPING SETS((T0.YMD,T0.CD),(T0.YMD)) ");
 			sb.append(") ");
 
 			// 表示項目
@@ -362,18 +381,34 @@ public class D14Dao extends ItemDao {
 			// 基本分野
 			sb.append(sbCLASS.toString());
 
+			sb.append(",W_CAL(YMD) AS ( ");
+			sb.append("SELECT DISTINCT YMD_CD FROM M_CALENDAR WHERE YMD_CD BETWEEN '"+szYy+szNm+"01' AND '"+szYy+szNm+"31' ");
+			sb.append(") ");
+			sb.append(",W_BASE(YMD,CD) AS ( ");
+			sb.append("SELECT YMD,CD FROM W_CAL,DS_M_KINGAKU ");
+			sb.append(") ");
+
 			// 基本集計
 			sb.append(", T_URI AS ( ");
 			sb.append("SELECT ");
+			sb.append(" T0.YMD AS YMFG, ");
+			sb.append(" CASE WHEN GROUPING_ID(T0.CD)=1 THEN 9 ELSE T0.CD END AS CLSNO ");
+			sb.append(",SUM(T1.SU) AS SU ");
+			sb.append(",SUM(T1.KG) AS KG ");
+			sb.append(",SUM(T1.KN) AS KN ");
+			sb.append("FROM W_BASE T0 ");
+			sb.append("LEFT OUTER JOIN ( ");
+			sb.append("SELECT ");
 			sb.append("    U.YMD AS YMFG ");
-			sb.append("  , NVL(CASE WHEN K.ZMREP IS NULL THEN 0 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 END,9) AS CLSNO ");
+			sb.append("  , CLSNO AS CLSNO ");
 			sb.append("  , SUM(U.SU) AS SU ");
 			sb.append("  , SUM(U.KG) AS KG ");
 			sb.append("  , COUNT(DISTINCT U.KNOT) AS KN ");
-			sb.append("FROM ");
+			sb.append(" FROM (SELECT U.YMD AS YMD, MIN(CASE WHEN K.DTSHU = U.YMD AND U.NFLG = 1 THEN 0 WHEN K.DTSHU = U.YMD AND U.NFLG <> 1 THEN 1 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 ELSE 1 END) AS CLSNO, MIN(ZYKG) AS ZYKG, SUM(SU) AS SU,SUM(KG) AS KG, U.KNOT");
+			sb.append(" FROM ");
 			sb.append("  DS_S_URI_D U ");
 			sb.append("  INNER JOIN W_CLASS W ON ( ");
-			sb.append("      U.YM = "+szYy+szNm+" ");
+			sb.append("      U.YM = '"+szYy+szNm+"' ");
 			sb.append("  AND U.CHANEL IN ("+szChanelCode+") ");
 			sb.append("  AND U.KNOT<>0 ");
 			sb.append("  AND U.CLS1 LIKE CASE WHEN W.CLS1='00' THEN '%' ELSE W.CLS1 END ");
@@ -385,9 +420,39 @@ public class D14Dao extends ItemDao {
 			sb.append("  AND U.ICD  LIKE CASE WHEN W.ICD ='00' THEN '%' ELSE W.ICD  END ");
 			sb.append("  ) ");
 			sb.append("  INNER JOIN DS_S_KNO_M K ON (U.YM=K.YM AND U.KNOT=K.KNOT) ");
+			sb.append("  GROUP BY U.YMD,U.KNOT)U ");
 			sb.append("GROUP BY ");
-			sb.append("GROUPING SETS((U.YMD,CASE WHEN K.ZMREP IS NULL THEN 0 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 END),(U.YMD)) ");
+			sb.append("U.YMD,U.CLSNO ");
+			sb.append(") T1 ON T1.YMFG=T0.YMD AND T1.CLSNO=T0.CD ");
+			sb.append("GROUP BY GROUPING SETS((T0.YMD,T0.CD),(T0.YMD)) ");
 			sb.append(") ");
+
+			// 基本集計
+//			sb.append(", T_URI AS ( ");
+//			sb.append("SELECT ");
+//			sb.append("    U.YMD AS YMFG ");
+//			sb.append("  , NVL(CASE WHEN K.DTSHU = U.YMD AND U.NFLG=1 THEN 0 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 END,9) AS CLSNO ");
+//			sb.append("  , SUM(U.SU) AS SU ");
+//			sb.append("  , SUM(U.KG) AS KG ");
+//			sb.append("  , COUNT(DISTINCT U.KNOT) AS KN ");
+//			sb.append("FROM ");
+//			sb.append("  DS_S_URI_D U ");
+//			sb.append("  INNER JOIN W_CLASS W ON ( ");
+//			sb.append("      U.YM = "+szYy+szNm+" ");
+//			sb.append("  AND U.CHANEL IN ("+szChanelCode+") ");
+//			sb.append("  AND U.KNOT<>0 ");
+//			sb.append("  AND U.CLS1 LIKE CASE WHEN W.CLS1='00' THEN '%' ELSE W.CLS1 END ");
+//			sb.append("  AND U.CLS2 LIKE CASE WHEN W.CLS2='00' THEN '%' ELSE W.CLS2 END ");
+//			sb.append("  AND U.CLS3 LIKE CASE WHEN W.CLS3='00' THEN '%' ELSE W.CLS3 END ");
+//			sb.append("  AND U.CLS4 LIKE CASE WHEN W.CLS4='00' THEN '%' ELSE W.CLS4 END ");
+//			sb.append("  AND U.CLS5 LIKE CASE WHEN W.CLS5='00' THEN '%' ELSE W.CLS5 END ");
+//			sb.append("  AND U.CLS6 LIKE CASE WHEN W.CLS6='00' THEN '%' ELSE W.CLS6 END ");
+//			sb.append("  AND U.ICD  LIKE CASE WHEN W.ICD ='00' THEN '%' ELSE W.ICD  END ");
+//			sb.append("  ) ");
+//			sb.append("  INNER JOIN DS_S_KNO_M K ON (U.YM=K.YM AND U.KNOT=K.KNOT) ");
+//			sb.append("GROUP BY ");
+//			sb.append("GROUPING SETS((U.YMD,CASE WHEN K.DTSHU = U.YMD AND U.NFLG=1 THEN 0 WHEN K.ZMREP BETWEEN 1 AND 6 THEN 1 WHEN K.ZMREP BETWEEN 7 AND 12 THEN 2 WHEN K.ZMREP BETWEEN 13 AND 24 THEN 3 WHEN K.ZMREP > 24 THEN 4 END),(U.YMD)) ");
+//			sb.append(") ");
 
 			// 表示項目
 			sb.append(", MVIW(KBN,KNM) AS ( ");
@@ -450,15 +515,23 @@ public class D14Dao extends ItemDao {
 			sb.append(",SUM(SUT) AS SUT,SUM(KGT) AS KGT,SUM(KNT) AS KNT ");
 			sb.append(",SUM(SUZ) AS SUZ,SUM(KGZ) AS KGZ,SUM(KNZ) AS KNZ ");
 			sb.append("FROM ( ");
+
 			sb.append("SELECT ");
-			sb.append("    NVL(CASE WHEN K.ZMREP IS NULL THEN 0 ELSE 1 END,9) AS CLSNO ");
+			sb.append("    CASE WHEN U.CLSNO <> 0 THEN 1 ELSE 0 END AS CLSNO ");
 			sb.append("  , '' AS CLSNM ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(1)+" THEN U.SU END) AS SUT ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(1)+" THEN U.KG END) AS KGT ");
-			sb.append("  , COUNT(DISTINCT CASE WHEN U.YM "+Years.get(1)+" THEN U.KNOT END) AS KNT ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(0)+" THEN U.SU END) AS SUZ ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(0)+" THEN U.KG END) AS KGZ ");
-			sb.append("  , COUNT(DISTINCT CASE WHEN U.YM "+Years.get(0)+" THEN U.KNOT END) AS KNZ ");
+			sb.append("  , SUM(CASE WHEN U.YM ="+szYy+" THEN U.SU END) AS SUT ");
+			sb.append("  , SUM(CASE WHEN U.YM ="+szYy+" THEN U.KG END) AS KGT ");
+			sb.append("  , COUNT(DISTINCT CASE WHEN U.YM ="+szYy+" THEN U.KNOT END) AS KNT ");
+			sb.append("  , SUM(CASE WHEN U.YM ="+szZYY+" THEN U.SU END) AS SUZ ");
+			sb.append("  , SUM(CASE WHEN U.YM ="+szZYY+" THEN U.KG END) AS KGZ ");
+			sb.append("  , COUNT(DISTINCT CASE WHEN U.YM ="+szZYY+" THEN U.KNOT END) AS KNZ ");
+			sb.append("FROM (");
+			sb.append("SELECT ");
+			sb.append("  SUBSTR(U.YM, 1, 4) AS YM ");
+			sb.append(", MIN(CASE WHEN K.DTSHU = U.YMD AND U.NFLG=1 THEN 0 ELSE 1 END) AS CLSNO ");
+			sb.append(", SUM(U.SU) AS SU ");
+			sb.append(", SUM(U.KG) AS KG ");
+			sb.append(", U.KNOT AS KNOT ");
 			sb.append("FROM ");
 			sb.append("  DS_S_URI_D U ");
 			sb.append("  INNER JOIN W_CLASS W ON ( ");
@@ -474,17 +547,14 @@ public class D14Dao extends ItemDao {
 			sb.append("  AND U.ICD  LIKE CASE WHEN W.ICD ='00' THEN '%' ELSE W.ICD  END ");
 			sb.append("  ) ");
 			sb.append("  INNER JOIN DS_S_KNO_M K ON (U.YM=K.YM AND U.KNOT=K.KNOT) ");
-			sb.append("GROUP BY CASE WHEN K.ZMREP IS NULL THEN 0 ELSE 1 END ");
+			sb.append("GROUP BY SUBSTR(U.YM, 1, 4),U.KNOT ");
 			sb.append("UNION ALL ");
 			sb.append("SELECT ");
-			sb.append("    NVL(CASE WHEN K.ZMREP IS NULL THEN 0 ELSE 1 END,9) AS CLSNO ");
-			sb.append("  , '' AS CLSNM ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(1)+" THEN U.SU END) AS SUT ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(1)+" THEN U.KG END) AS KGT ");
-			sb.append("  , COUNT(DISTINCT CASE WHEN U.YM "+Years.get(1)+" THEN U.KNOT END) AS KNT ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(0)+" THEN U.SU END) AS SUZ ");
-			sb.append("  , SUM(CASE WHEN U.YM "+Years.get(0)+" THEN U.KG END) AS KGZ ");
-			sb.append("  , COUNT(DISTINCT CASE WHEN U.YM "+Years.get(0)+" THEN U.KNOT END) AS KNZ ");
+			sb.append("  SUBSTR(U.YM, 1, 4) AS YM ");
+			sb.append(", MIN(CASE WHEN K.DTSHU = U.YMD AND U.NFLG=1 THEN 0 ELSE 1 END) AS CLSNO ");
+			sb.append(", SUM(U.SU) AS SU ");
+			sb.append(", SUM(U.KG) AS KG ");
+			sb.append(", U.KNOT AS KNOT ");
 			sb.append("FROM ");
 			sb.append("  DS_S_URI_D U ");
 			sb.append("  INNER JOIN W_CLASS W ON ( ");
@@ -500,7 +570,10 @@ public class D14Dao extends ItemDao {
 			sb.append("  AND U.ICD  LIKE CASE WHEN W.ICD ='00' THEN '%' ELSE W.ICD  END ");
 			sb.append("  ) ");
 			sb.append("  INNER JOIN DS_S_KNO_M K ON (U.YM=K.YM AND U.KNOT=K.KNOT) ");
-			sb.append("GROUP BY CASE WHEN K.ZMREP IS NULL THEN 0 ELSE 1 END ");
+			sb.append("GROUP BY SUBSTR(U.YM, 1, 4),U.KNOT ");
+			sb.append(") U ");
+			sb.append("GROUP BY CASE WHEN U.CLSNO <> 0 THEN 1 ELSE 0 END ");
+
 			sb.append(")X GROUP BY CLSNO,CLSNM ");
 			sb.append(")Y ");
 			sb.append(")Z GROUP BY GROUPING SETS((CLSNO),()) ");

@@ -214,7 +214,7 @@ input[type="radio"],input[type="checkbox"]{
 <!-- numberformatter plugin -->
 
 <!-- Report Option & Control & Event  -->
-<script type="text/javascript"	src="../js/jquery.report/jquery.report.option.B_01.js?t=<%System.currentTimeMillis();%>"></script>
+<script type="text/javascript"	src="../js/jquery.report/jquery.report.option.B_01.js?t=1<%System.currentTimeMillis();%>"></script>
 <script type="text/javascript"	src="../js/jquery.report/jquery.report.control.js?t=<%System.currentTimeMillis();%>"></script>
 <script type="text/javascript" src="../js/jquery.report/jquery.report.Columns.js?t=<%System.currentTimeMillis();%>"></script>
 <script type="text/javascript"  src="../js/jquery.report/jquery.report.events.js?t=<%System.currentTimeMillis();%>"></script>

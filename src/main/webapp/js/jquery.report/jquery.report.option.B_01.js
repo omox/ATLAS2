@@ -179,7 +179,7 @@
 					BRAND			:	szSelBrand,					// 他ブランドコード
 					BRAND_NM		:	szSelBrandNm,				// 他ブランド名称
 					ITAKU			:	szSelItaku,					// 他社売上コード
-					ITAKU_NM		:	szSelItakuNm,				// 他社売上名称
+					ITAKU_NM		:	'', // szSelItakuNm,				// 他社売上名称
 					KAIGAI			:	szSelKaigai,				// 関連会社コード
 					KAIGAI_NM		:	szSelKaigaiNm,				// 関連会社名称
 					JUHAN			:	szSelJuhan,					// 従販コード

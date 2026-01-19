@@ -76,7 +76,10 @@ function submit_forward(action,nm,val){
 <div id="content">
 <form id="frm_repout" name="frm_repout" method="post">
 	<h2>レポート画面</h2>
-	<div style="font-size:80%;">　※2020年9月より店舗ショッパー分を含んだ個数・金額を表示しています	</div>
+	<div style="font-size:80%;">
+	　※2020年9月より店舗ショッパー分を含んだ個数・金額を表示しています<br>
+	　※2021年3月より店舗ポイントカード保有者で個人情報登録のない人にも顧客番号が採番されるようになりました
+	</div>
 
 	<%--  エラーメッセージ領域 --%>
 <%

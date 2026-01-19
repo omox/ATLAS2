@@ -167,25 +167,25 @@ public class B04Dao extends ItemDao {
 		String[] ItemJ = { J[0] + " AS \"数量\"", J[1] + " AS \"売上額\"", J[2] + " AS \"年計:数量\"", J[3] + " AS \"年計:売上額\"" };
 		String[] JK = { ",NVL(SUM(SU),0)", ",SUM(TRUNC(GA* RITSU,-1))", ",NVL(SUM(RUI_SU),0)", ",NVL(SUM(RUI_GA_ZEI),0)" };
 		String[] ItemJK = { JK[0] + " AS \"数量\"", JK[1] + " AS \"売上額税込\"", JK[2] + " AS \"年計:数量\"", JK[3] + " AS \"年計:売上額税込\"" };
-		String[] JZy = { ",NVL(CASE WHEN SUM(ZYY_SU) = 0 THEN 0 ELSE ROUND(SUM(SU) / SUM(ZYY_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_GA) = 0 THEN 0 ELSE ROUND(SUM(GA) / SUM(ZYY_GA) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE ROUND(SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_GA) = 0 THEN 0 ELSE ROUND(SUM(RUI_GA) / SUM(ZYY_RUI_GA) * 100,1) END,0)" };
+		String[] JZy = { ",NVL(CASE WHEN SUM(ZYY_SU) = 0 THEN 0 ELSE SUM(SU) / SUM(ZYY_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_GA) = 0 THEN 0 ELSE SUM(GA) / SUM(ZYY_GA) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_GA) = 0 THEN 0 ELSE SUM(RUI_GA) / SUM(ZYY_RUI_GA) * 100 END,0)" };
 		String[] ItemJZy = { JZy[0] + " AS \"数前年比\"", JZy[1] + " AS \"額前年比\"", JZy[2] + " AS \"年計:数前年比\"", JZy[3] + " AS \"年計:額前年比\"" };
-		String[] JKZy = { ",NVL(CASE WHEN SUM(ZYY_SU) = 0 THEN 0 ELSE ROUND(SUM(SU) / SUM(ZYY_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_GA) = 0 THEN 0 ELSE ROUND(SUM(TRUNC(GA* RITSU,-1)) / SUM(TRUNC(ZYY_GA* RITSU,-1)) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE ROUND(SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_GA_ZEI) = 0 THEN 0 ELSE ROUND(SUM(RUI_GA_ZEI) / SUM(ZYY_RUI_GA_ZEI) * 100,1) END,0)" };
+		String[] JKZy = { ",NVL(CASE WHEN SUM(ZYY_SU) = 0 THEN 0 ELSE SUM(SU) / SUM(ZYY_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_GA) = 0 THEN 0 ELSE SUM(TRUNC(GA* RITSU,-1)) / SUM(TRUNC(ZYY_GA* RITSU,-1)) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_GA_ZEI) = 0 THEN 0 ELSE SUM(RUI_GA_ZEI) / SUM(ZYY_RUI_GA_ZEI) * 100 END,0)" };
 		String[] ItemJKZy = { JKZy[0] + " AS \"数前年比\"", JKZy[1] + " AS \"額前年比\"", JKZy[2] + " AS \"年計:数前年比\"", JKZy[3] + " AS \"年計:額前年比\"" };
-		String[] JZm = { ",NVL(CASE WHEN SUM(ZMM_SU) = 0 THEN 0 ELSE ROUND(SUM(SU) / SUM(ZMM_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZMM_GA) = 0 THEN 0 ELSE ROUND(SUM(GA) / SUM(ZMM_GA) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE ROUND(SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_GA) = 0 THEN 0 ELSE ROUND(SUM(RUI_GA) / SUM(ZYY_RUI_GA) * 100,1) END,0)" };
+		String[] JZm = { ",NVL(CASE WHEN SUM(ZMM_SU) = 0 THEN 0 ELSE SUM(SU) / SUM(ZMM_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZMM_GA) = 0 THEN 0 ELSE SUM(GA) / SUM(ZMM_GA) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_GA) = 0 THEN 0 ELSE SUM(RUI_GA) / SUM(ZYY_RUI_GA) * 100 END,0)" };
 		String[] ItemJZm = { JZm[0] + " AS \"数前月比\"", JZm[1] + " AS \"額前月比\"", JZm[2] + " AS \"年計:数前年比\"", JZm[3] + " AS \"年計:額前年比\"" };
-		String[] JKZm = { ",NVL(CASE WHEN SUM(ZMM_SU) = 0 THEN 0 ELSE ROUND(SUM(SU) / SUM(ZMM_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZMM_GA) = 0 THEN 0 ELSE ROUND(SUM(TRUNC(GA* RITSU,-1)) / SUM(TRUNC(ZMM_GA* RITSU,-1)) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE ROUND(SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100,1) END,0)",
-				",NVL(CASE WHEN SUM(ZYY_RUI_GA_ZEI) = 0 THEN 0 ELSE ROUND(SUM(RUI_GA_ZEI) / SUM(ZYY_RUI_GA_ZEI) * 100,1) END,0)" };
+		String[] JKZm = { ",NVL(CASE WHEN SUM(ZMM_SU) = 0 THEN 0 ELSE SUM(SU) / SUM(ZMM_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZMM_GA) = 0 THEN 0 ELSE SUM(TRUNC(GA* RITSU,-1)) / SUM(TRUNC(ZMM_GA* RITSU,-1)) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_SU) = 0 THEN 0 ELSE SUM(RUI_SU) / SUM(ZYY_RUI_SU) * 100 END,0)",
+				",NVL(CASE WHEN SUM(ZYY_RUI_GA_ZEI) = 0 THEN 0 ELSE SUM(RUI_GA_ZEI) / SUM(ZYY_RUI_GA_ZEI) * 100 END,0)" };
 		String[] ItemJKZm = { JKZm[0] + " AS \"数前月比\"", JKZm[1] + " AS \"額前月比\"", JKZm[2] + " AS \"年計:数前年比\"", JKZm[3] + " AS \"年計:額前年比\"" };
 
 		//照会データ指定基本・年・月・日別　数値項目作成
@@ -236,7 +236,7 @@ public class B04Dao extends ItemDao {
 				sqlFor += col + " AS " + sqlSuGaA + i + "\"";
 				sqlFors = ArrayUtils.add(sqlFors, col);
 				if (StringUtils.equals(szZen, "2")) {  //年別/数量/前年比
-					col = ",NVL(CASE WHEN SUM(CASE WHEN URI_YY = '" + i + "' THEN " + sqlSuGaZY + " END) = 0 THEN 0 ELSE (ROUND(SUM(CASE WHEN URI_YY = '" + i + "' THEN " + sqlSuGa1 + " END) / SUM(CASE WHEN URI_YY = '" + i + "' THEN " + sqlSuGaZY + " END) * 100,1)) END,0)";
+					col = ",NVL(CASE WHEN SUM(CASE WHEN URI_YY = '" + i + "' THEN " + sqlSuGaZY + " END) = 0 THEN 0 ELSE (SUM(CASE WHEN URI_YY = '" + i + "' THEN " + sqlSuGa1 + " END) / SUM(CASE WHEN URI_YY = '" + i + "' THEN " + sqlSuGaZY + " END) * 100) END,0)";
 					sqlFor += col + " AS \"前年比\"";
 					sqlFors = ArrayUtils.add(sqlFors, col);
 				}
@@ -249,13 +249,13 @@ public class B04Dao extends ItemDao {
 				sqlFor += col + " AS " + sqlSuGaA + dt.substring(0, 4) + "-" + dt.substring(4, 6) + "\"";
 				sqlFors = ArrayUtils.add(sqlFors, col);
 				if (StringUtils.equals(szZen, "2")) {  //前年比
-					col = ",NVL(CASE WHEN SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZY + " END) = 0 THEN 0 ELSE (ROUND(SUM(CASE WHEN URI_YM = '"
-							+ dt + "' THEN " + sqlSuGa1 + " END) / SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZY + " END) * 100,1)) END,0)";
+					col = ",NVL(CASE WHEN SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZY + " END) = 0 THEN 0 ELSE (SUM(CASE WHEN URI_YM = '"
+							+ dt + "' THEN " + sqlSuGa1 + " END) / SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZY + " END) * 100) END,0)";
 					sqlFor += col + " AS " + "\"前年比\"";
 					sqlFors = ArrayUtils.add(sqlFors, col);
 				} else if (StringUtils.equals(szZen, "3")) {  //前月比
-					col = ",NVL(CASE WHEN SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZM + " END) = 0 THEN 0 ELSE (ROUND(SUM(CASE WHEN URI_YM = '"
-							+ dt + "' THEN " + sqlSuGa1 + " END) / SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZM + " END) * 100,1)) END,0)";
+					col = ",NVL(CASE WHEN SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZM + " END) = 0 THEN 0 ELSE (SUM(CASE WHEN URI_YM = '"
+							+ dt + "' THEN " + sqlSuGa1 + " END) / SUM(CASE WHEN URI_YM = '" + dt + "' THEN " + sqlSuGaZM + " END) * 100) END,0)";
 					sqlFor += col + " AS " + "\"前月比\"";
 					sqlFors = ArrayUtils.add(sqlFors, col);
 				}

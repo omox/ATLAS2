@@ -18,7 +18,7 @@
 		timeData : (new Date()).getTime(),
 		defaultValues: [],
 		initedObject: [],
-		initedObjCount: 8,
+		initedObjCount: 11,
 		initializes : true,
 		initialize: function (reportno){		// （必須）初期化
 			var that = this;

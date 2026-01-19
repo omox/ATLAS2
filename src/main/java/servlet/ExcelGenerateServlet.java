@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -172,19 +171,13 @@ public class ExcelGenerateServlet extends HttpServlet {
 			return;
 		}
 
-		// レポート名取得（検索条件の1行目より）
-		ArrayList<List<String>> wh = (ArrayList<List<String>>) session.getAttribute(DefineReport.ID_SESSION_WHERE);
-		String filename = wh.get(0).get(0);
-
-		String report = request.getParameter("report");
-		if (DefineReport.ID_PAGE_B_04.equals(report)) {
-			exportCSV(response, session, filename);
-		}else {
-		
-
 		try {
+			// レポート名取得（検索条件の1行目より）
+			ArrayList<List<String>> wh = (ArrayList<List<String>>) session.getAttribute(DefineReport.ID_SESSION_WHERE);
+			String filename = wh.get(0).get(0);
 
 			// レポート情報
+			String report = request.getParameter("report");
 			long start = System.currentTimeMillis();
 
 			// Excel ワークブック
@@ -227,50 +220,7 @@ public class ExcelGenerateServlet extends HttpServlet {
 			String strPage = Defines.STR_EXCEL_ERROR;
 			getServletContext().getRequestDispatcher(strPage).forward(request, response);
 		}
-		}
-	}
 
-	@SuppressWarnings("unchecked")
-	private void exportCSV(HttpServletResponse response, HttpSession session, String prefix) throws UnsupportedEncodingException {
-		//文字コードと出力するCSVファイル名を設定
-		long start = System.currentTimeMillis();
-		// ファイル名
-		Date dt = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String filename = prefix + "_" + sdf.format(dt) + ".csv";
-		System.out.println(filename);
-
-		//送信
-		response.setContentType("text/plain;charset=Windows-31J");
-		response.setHeader("Content-Disposition", "attachment; filename="+new String(filename.getBytes("Windows-31J"), "ISO-8859-1"));
-		
-		//try-with-resources文を使うことでclose処理を自動化
-		try (PrintWriter pw = response.getWriter()) {
-			// 検索結果取得
-			ArrayList<List<String>> al = null;
-
-			String outputString = "";
-			// 
-			al = (ArrayList<List<String>>) session.getAttribute(DefineReport.ID_SESSION_TABLE);
-			//CSVファイル内部に記載する形式で文字列を設定
-			for (int i = 0; i < al.size(); i++) {
-				outputString = "";
-				List<String> colList = al.get(i);
-				for (int j = 1; j < colList.size(); j++) {
-					outputString = outputString + colList.get(j) + ",";
-					outputString = outputString.replace("null", ""); // null 削除
-				}
-				outputString = StringUtils.removeEnd(outputString, ",") + "\r\n";
-				//System.out.println(outputString);
-				//CSVファイルに書き込み
-				pw.print(outputString);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			System.out.println("CSV出力時間: " + (System.currentTimeMillis() - start) + " ミリ秒");
-		}
-		
 	}
 
 	/**
