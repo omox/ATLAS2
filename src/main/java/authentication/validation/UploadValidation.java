@@ -3,6 +3,7 @@
  */
 package authentication.validation;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -214,11 +215,11 @@ public class UploadValidation {
       msgs.add(msg);
       errflg = false;
     } else if (obj.trim().length() > len) {
-      String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END + MSG_KIGO;
+      String msg = objMSG + "に" + len + MSG_LEN + "以内の" + MSG_HALFNUM + MSG_END + MSG_KIGO;
       msgs.add(msg);
       errflg = false;
     } else if (!this.isNumeric(obj)) {
-      String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END + MSG_KIGO;
+      String msg = objMSG + "に" + len + MSG_LEN + "以内の" + MSG_HALFNUM + MSG_END + MSG_KIGO;
       msgs.add(msg);
       errflg = false;
     }
@@ -262,7 +263,36 @@ public class UploadValidation {
 
     /* 桁数 */
     if (obj.trim().length() > len) {
-      String msg = objMSG + "に" + len + MSG_LEN + "以上" + MSG_END;
+      String msg = objMSG + "に" + (len / 2) + MSG_LEN + "超" + MSG_END;
+      msgs.add(msg);
+      errflg = false;
+    }
+    return errflg;
+  }
+
+  /**
+   * 桁数のチェックを行い、結果を戻す。 <br />
+   *
+   * @param obj チェック対象
+   * @param len 対象桁数
+   * @param objMSG 対象の表示文字
+   * @return 正常:true エラー:false
+   */
+  private boolean chkNonRequired2(String obj, int len, String objMSG) {
+    boolean errflg = true;
+
+    /* 桁数 */
+    byte[] bytes3;
+    String newStr3 = "";
+    try {
+      bytes3 = obj.trim().getBytes("SJIS");
+      newStr3 = new String(bytes3, "SJIS");
+      System.out.println(newStr3.length());
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+    if (newStr3.length() > len) {
+      String msg = objMSG + "に" + (len / 2) + MSG_LEN + "超の文字" + MSG_END;
       msgs.add(msg);
       errflg = false;
     }
@@ -283,11 +313,11 @@ public class UploadValidation {
     /* 桁数,半角数字 */
     if (obj.trim().length() != 0) {
       if (obj.trim().length() > len) {
-        String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END;
+        String msg = objMSG + "に" + len + MSG_LEN + "超または" + MSG_HALFNUM + MSG_END;
         msgs.add(msg);
         errflg = false;
       } else if (!this.isNumericL(obj)) {
-        String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END;
+        String msg = objMSG + "に" + len + MSG_LEN + "超または" + MSG_HALFNUM + MSG_END;
         msgs.add(msg);
         errflg = false;
       }
@@ -511,12 +541,29 @@ public class UploadValidation {
         if (!this.chkRequiredOHAN(strdata[5].replaceFirst("^'", ""), 8, "商品番号（CPコード）")) {
           errflg = false;
         }
+        /* 掲載商品 */
+        if (!this.chkNonRequired2(strdata[6], 300, "掲載商品")) {
+          errflg = false;
+        }
         /* 年月 */
+        System.out.println(strdata[7]);
         if (!this.chkNonreqLDate(strdata[7], 8, "プロモーション開始日")) {
           errflg = false;
         }
         /* 年月 */
         if (!this.chkNonreqLDate(strdata[8], 8, "プロモーション終了日")) {
+          errflg = false;
+        }
+        /* プロモ対象月 */
+        if (!this.chkNonRequired2(strdata[9], 48, "プロモ対象月")) {
+          errflg = false;
+        }
+        /* 個数（件数） NUMBER(9, 0) */
+        if (!this.chkNonreqLNL(strdata[10], 9, "個数（件数）")) {
+          errflg = false;
+        }
+        /* 個数（件数） NUMBER(11, 0) */
+        if (!this.chkNonreqLNL(strdata[11], 11, "金額")) {
           errflg = false;
         }
       } else {
