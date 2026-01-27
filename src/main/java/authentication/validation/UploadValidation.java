@@ -292,7 +292,7 @@ public class UploadValidation {
       e.printStackTrace();
     }
     if (newStr3.length() > len) {
-      String msg = objMSG + "に" + (len / 2) + MSG_LEN + "超の文字" + MSG_END;
+      String msg = objMSG + "に" + (len / 2) + MSG_LEN + "より大きな文字数" + MSG_END;
       msgs.add(msg);
       errflg = false;
     }
@@ -313,11 +313,37 @@ public class UploadValidation {
     /* 桁数,半角数字 */
     if (obj.trim().length() != 0) {
       if (obj.trim().length() > len) {
-        String msg = objMSG + "に" + len + MSG_LEN + "超または" + MSG_HALFNUM + MSG_END;
+        String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END;
         msgs.add(msg);
         errflg = false;
       } else if (!this.isNumericL(obj)) {
-        String msg = objMSG + "に" + len + MSG_LEN + "超または" + MSG_HALFNUM + MSG_END;
+        String msg = objMSG + "に" + len + MSG_LEN + "の" + MSG_HALFNUM + MSG_END;
+        msgs.add(msg);
+        errflg = false;
+      }
+    }
+    return errflg;
+  }
+
+  /**
+   * 桁数,整数のチェックを行い、結果を戻す。 <br />
+   *
+   * @param obj チェック対象
+   * @param len 対象桁数
+   * @param objMSG 対象の表示文字
+   * @return 正常:true エラー:false
+   */
+  private boolean chkNonreqLNL2(String obj, int len, String objMSG) {
+    boolean errflg = true;
+
+    /* 桁数,半角数字 */
+    if (obj.trim().length() != 0) {
+      if (obj.trim().length() > len) {
+        String msg = objMSG + "に" + len + MSG_LEN + "以内の" + MSG_HALFNUM + MSG_END;
+        msgs.add(msg);
+        errflg = false;
+      } else if (!this.isNumericL(obj)) {
+        String msg = objMSG + "に" + len + MSG_LEN + "以内の" + MSG_HALFNUM + MSG_END;
         msgs.add(msg);
         errflg = false;
       }
@@ -559,11 +585,11 @@ public class UploadValidation {
           errflg = false;
         }
         /* 個数（件数） NUMBER(9, 0) */
-        if (!this.chkNonreqLNL(strdata[10], 9, "個数（件数）")) {
+        if (!this.chkNonreqLNL2(strdata[10], 9, "個数（件数）")) {
           errflg = false;
         }
         /* 個数（件数） NUMBER(11, 0) */
-        if (!this.chkNonreqLNL(strdata[11], 11, "金額")) {
+        if (!this.chkNonreqLNL2(strdata[11], 11, "金額")) {
           errflg = false;
         }
       } else {
