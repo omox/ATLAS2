@@ -287,12 +287,11 @@ public class UploadValidation {
     try {
       bytes3 = obj.trim().getBytes("SJIS");
       newStr3 = new String(bytes3, "SJIS");
-      System.out.println(newStr3.length());
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }
     if (newStr3.length() > len) {
-      String msg = objMSG + "に" + (len / 2) + MSG_LEN + "より大きな文字数" + MSG_END;
+      String msg = objMSG + "は全角" + (len / 2) + "文字または半角" + len + "文字が上限です。";
       msgs.add(msg);
       errflg = false;
     }
